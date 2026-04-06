@@ -1,0 +1,347 @@
+.AUTHpage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .AUTHcontainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: var(--BACKGROUND);
+        border: var(--BORDER_GRAY);
+        padding: 5%;
+        width: 50%;
+    }
+
+        .AUTHtabs {
+            display: flex;
+            justify-content: end;
+            gap: 20px;
+            width: 100%;
+            margin: 0;
+            margin-bottom: 10%;
+            background: transparent;
+            color: var(--TEXTWHITE);
+            font-family: "BOUNDED";
+            font-size: 1.5rem;
+        }
+
+
+    .AUTHform {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+        .FORMgroup {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+            .FORMlabel {
+                color: var(--ACCENT);
+                font-family: "CONSOLAS";
+                font-size: 1.3rem;
+            }
+
+            .FORMinput {
+                background: transparent;
+                border: var(--BORDER_GREEN);
+                padding: 15px;
+                color: var(--TEXTWHITE);
+                font-family: "CONSOLAS";
+                font-size: 1rem;
+                outline: none;
+                transition: 0.2s ease;
+            }
+            
+            .FORMinput:focus {
+                border-color: var(--VIOLETT);
+                box-shadow: 0 0 20px var(--VIOLETT);
+            }
+            
+            .FORMinput::placeholder {
+                color: #666;
+            }
+            
+            .error-message {
+                color: red;
+                font-family: "BOUNDED";
+                font-size: 0.9rem;
+                margin-top: 5px;
+                min-height: 20px;
+            }
+
+
+
+        .FORMsubmit {
+            background: var(--ACCENT);
+            color: var(--ULTRABLACK);
+            font-family: "BOUNDED";
+            font-size: 1.2rem;
+            padding: 15px;
+            border: var(--BORDER_GREEN);
+            cursor: pointer;
+            transition: 0.2s ease;
+            margin-top: 10px;
+            box-shadow: var(--ACCENT) 0 0 20px;
+        }
+
+            .FORMsubmit:hover {
+                background: transparent;
+                color: var(--TEXTWHITE);
+                border-color: var(--VIOLETT);
+                box-shadow: none;
+                transform: scale(1.02);
+            }
+
+                .FORMsubmit:active {
+                    transform: scale(0.98);
+                }
+
+.hidden { display: none !important; }
+    .notification {
+        display: none;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--BACKGROUND_COLOR);
+        border: var(--BORDER_GREEN);
+        padding: 15px 25px;
+        color: var(--TEXTWHITE);
+        font-family: "BOUNDED";
+        transform: translateX(400px);
+        transition: 0.3s ease;
+        z-index: 9999;
+    }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            border-color: var(--ACCENT);
+            box-shadow: 0 0 20px var(--ACCENT);
+        }
+        
+        .notification.error {
+            border-color:red;
+            box-shadow: 0 0 20px red;
+        }
+
+
+        
+
+@media (max-width: 1200px) {
+    .AUTHcontainer {
+        width: 60%;
+        padding: 4%;
+    }
+    
+    .AUTHtabBTN {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 992px) {
+    .AUTHcontainer {
+        width: 70%;
+        padding: 5%;
+    }
+    
+    .AUTHtabBTN {
+        font-size: 1rem;
+        padding: 12px;
+    }
+    
+    .FORMinput {
+        padding: 12px;
+    }
+    
+    .FORMsubmit {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .AUTHcontainer {
+        width: 80%;
+        padding: 30px;
+    }
+    
+    .AUTHtabs {
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+    
+    .AUTHtabBTN {
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+    
+    .FORMgroup {
+        gap: 6px;
+    }
+    
+    .FORMlabel {
+        font-size: 0.9rem;
+    }
+    
+    .FORMinput {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .error-message {
+        font-size: 0.8rem;
+    }
+    
+    .FORMsubmit {
+        font-size: 1rem;
+        padding: 12px;
+        margin-top: 5px;
+    }
+    
+    .notification {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) translateY(-100px);
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+        padding: 12px 20px;
+    }
+    
+    .notification.show {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@media (max-width: 576px) {
+    .AUTHcontainer {
+        width: 90%;
+        padding: 25px 20px;
+    }
+    
+    .AUTHtabs {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .AUTHtabBTN {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+    
+    .FORMgroup {
+        gap: 5px;
+    }
+    
+    .FORMlabel {
+        font-size: 0.85rem;
+    }
+    
+    .FORMinput {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+    
+    .FORMinput::placeholder {
+        font-size: 0.8rem;
+    }
+    
+    .error-message {
+        font-size: 0.75rem;
+    }
+    
+    .FORMsubmit {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+    
+    .notification {
+        width: 95%;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        top: 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    .AUTHcontainer {
+        width: 95%;
+        padding: 20px 15px;
+    }
+    
+    .AUTHtabBTN {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+    
+    .FORMlabel {
+        font-size: 0.8rem;
+    }
+    
+    .FORMinput {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+    
+    .FORMsubmit {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+}
+
+@media (hover: none) {
+    .AUTHtabBTN:hover {
+        border-color: var(--ACCENT);
+    }
+    
+    .AUTHtabBTN.active:hover {
+        background: var(--VIOLETT);
+        border-color: var(--VIOLETT);
+    }
+    
+    .AUTHtabBTN:active {
+        border-color: var(--VIOLETT);
+    }
+    
+    .AUTHtabBTN.active:active {
+        background: var(--VIOLETT);
+        box-shadow: 0 0 20px var(--VIOLETT);
+    }
+    
+    .FORMsubmit:hover {
+        background: var(--ACCENT);
+        color: var(--ULTRABLACK);
+        border-color: var(--BORDER_GREEN);
+        box-shadow: var(--ACCENT) 0 0 20px;
+        transform: none;
+    }
+    
+    .FORMsubmit:active {
+        background: transparent;
+        color: var(--TEXTWHITE);
+        border-color: var(--VIOLETT);
+        box-shadow: none;
+        transform: scale(0.98);
+    }
+}
+
+@media (max-width: 480px) {
+    .AUTHcontainer {
+        padding: 20px 15px;
+    }
+    
+    .AUTHtabs {
+        margin-bottom: 20px;
+    }
+}

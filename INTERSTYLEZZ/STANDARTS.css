@@ -1,0 +1,39 @@
+:root{
+    --BACKGROUNDCOLORALLPAGE: #101010;
+    --BACKGROUND: #050505;
+    --ACCENT: #2BFF00;
+    --ULTRABLACK: #000000;
+    --GRAY: #444444;
+    --BORDER_GREEN: solid 3px var(--ACCENT);
+    --BORDER_GRAY: solid 2px var(--GRAY);
+    --TEXTWHITE: white;
+}
+
+body{
+    background-color: var(--BACKGROUNDCOLORALLPAGE);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+
+.GLOBALSPATIUM{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-bottom: 15vh;
+    gap: 50px;
+    padding-top: 15vh;
+}
+
+.ZAGL{
+    display: flex;
+    color: var(--TEXTWHITE);
+    font-family: "BOUNDED";
+    font-weight: 100;
+    font-size: 2.5rem;
+    margin-bottom: 100px;
+}

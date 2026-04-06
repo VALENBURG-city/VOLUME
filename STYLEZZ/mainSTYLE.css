@@ -91,7 +91,7 @@
     width: 23%;
     transition: 0.3s ease;
     box-sizing: border-box;
-    border: var(--BORDER);
+    border: var(--BORDERg);
     text-decoration: none;
 }
 

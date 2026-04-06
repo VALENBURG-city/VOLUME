@@ -1,0 +1,102 @@
+.TAPE{
+    position: relative;
+    display: flex;
+    background-color: var(--ACCENT);
+    width: 100%;
+    height: 20vh;
+    margin-top: 10vh;
+}
+
+    .inscriptions{
+        position: relative;
+        left: 3%;
+        display: flex;
+        flex-direction: row;
+        gap:3.6%;
+        animation: FLOWTAPE infinite linear 2s;
+    }
+
+    .TEXTTAPE{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        font-family: "BOUNDED";
+
+    }
+
+        .texttpe{
+            font-size: 2rem;
+            transform: scaleX(1.3);
+            margin: 0;
+            margin-top: 1%;
+        }
+
+            .W {
+                font-size: 2rem;
+                transform: scaleY(4.5) scaleX(1.25);
+                margin-bottom: 16%;
+            }
+
+    
+    @keyframes FLOWTAPE {
+
+        0%{
+
+        }
+
+        100%{
+            transform: translateX(-17.89%); /* выставить значение точнее, изменить в будущем*/
+        }
+
+    }
+
+
+.BENEFITS{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    font-family: "BOUNDED";
+    color: var(--TEXTWHITE);
+    font-size: 2rem;
+    margin-top: 10vh;
+}
+
+    .BENtext{
+            transition: 0.3s ease;
+    }
+
+    .BENtext:hover{
+        color: var(--ACCENT);
+            transform: scale(1.05);
+    }
+
+.GOBUTTONS{
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    justify-content: center;
+    margin-top: 20vh;
+    gap: 10%;
+}
+
+.GOTObutt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--ULTRABLACK);
+    background: var(--ACCENT);
+    font-family: "BOUNDED";
+    width: 23%;
+    transition: 0.3s ease;
+    box-sizing: border-box;
+    border: var(--BORDER);
+    text-decoration: none;
+}
+
+    .GOTObutt:hover{
+        transform: scale(1.05);
+        background: none;
+        color: var(--TEXTWHITE);
+    }

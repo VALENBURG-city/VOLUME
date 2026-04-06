@@ -56,20 +56,20 @@ function SWITCHhref() {
     
     if (user) {
         authLink.textContent = 'Личный кабинет';
-        authLink.href = 'PROFILE.html';
+        authLink.href = 'PROFILE.html'; // изменить на новую страницу
     } else {
         authLink.textContent = 'Авторизация';
-        authLink.href = 'AUTHORIZATION.html';
+        authLink.href = 'AUTHORIZATION.html'; // изменить на новую страницу
     }
 }
 
 function logout() {
     localStorage.removeItem('semantic_current_user');
-    NotificationManager.show('Вы вышли из системы', 'success');
+    NotificationManager.show('Вы вышли из системы', 'success'); // настроить чтоб работало
     SWITCHhref();
     
     setTimeout(() => {
-        window.location.href = 'MAIN_MENU.html';
+        window.location.href = 'MAINPAD.html';
     }, 1500);
 }
 
@@ -106,68 +106,19 @@ function loadUserProfileData() {
     }
 }
 
-function loadPartnerData() {
-    const user = getCurrentUser();
-    
-    if (!user || user.userType !== 'partner') return;
-    
-    const partnerSection = document.getElementById('partnerSection');
-    const partnerBadge = document.getElementById('partnerBadge');
-    const partnerCompany = document.getElementById('partnerCompany');
-    const partnerLink = document.getElementById('partnerLink');
-    const partnerClicks = document.getElementById('partnerClicks');
-    const partnerConversions = document.getElementById('partnerConversions');
-    const partnerEarnings = document.getElementById('partnerEarnings');
-    const partnerCommission = document.getElementById('partnerCommission');
-    const copyLinkBtn = document.getElementById('copyLinkBtn');
-    
-    if (partnerSection) partnerSection.classList.remove('hidden');
-    if (partnerBadge) partnerBadge.classList.remove('hidden');
-    
-    if (partnerCompany && user.company) {
-        partnerCompany.value = user.company;
-    }
-    
-    if (partnerLink && user.partnerLink) {
-        partnerLink.textContent = user.partnerLink;
-    }
-    
-    const stats = user.partnerStats || { clicks: 0, conversions: 0, earnings: 0 };
-    if (partnerClicks) partnerClicks.textContent = stats.clicks || 0;
-    if (partnerConversions) partnerConversions.textContent = stats.conversions || 0;
-    if (partnerEarnings) partnerEarnings.textContent = `$${stats.earnings || 0}`;
-    
-    const commission = user.commission || 30;
-    if (partnerCommission) {
-        partnerCommission.textContent = commission === 'negotiable' ? 'Договорная' : commission + '%';
-    }
-    
-    if (copyLinkBtn && partnerLink) {
-        copyLinkBtn.addEventListener('click', function() {
-            const link = partnerLink.textContent;
-            navigator.clipboard.writeText(link).then(() => {
-                NotificationManager.show('Ссылка скопирована!', 'success');
-            });
-        });
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     
     SWITCHhref();
     
     if (document.getElementById('nameDATA') || document.getElementById('infoFam')) {
         loadUserProfileData();
-        loadPartnerData();
     }
     
     const tabs = document.querySelectorAll('.AUTHtabBTN');
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
-    const partnerForm = document.getElementById('partner-form');
     const loginError = document.getElementById('login-error');
     const registerError = document.getElementById('register-error');
-    const partnerError = document.getElementById('partner-error');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
     if (tabs.length) {
@@ -179,19 +130,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (loginForm) loginForm.classList.add('hidden');
                 if (registerForm) registerForm.classList.add('hidden');
-                if (partnerForm) partnerForm.classList.add('hidden');
                 
                 if (tab === 'login') {
                     if (loginForm) loginForm.classList.remove('hidden');
                 } else if (tab === 'register') {
                     if (registerForm) registerForm.classList.remove('hidden');
-                } else if (tab === 'partner') {
-                    if (partnerForm) partnerForm.classList.remove('hidden');
                 }
-                
+
                 if (loginError) loginError.textContent = '';
                 if (registerError) registerError.textContent = '';
-                if (partnerError) partnerError.textContent = '';
             });
         });
     }
@@ -233,8 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 fam: user.fam || '',
                 userType: user.userType || 'user',
                 company: user.company,
-                partnerLink: user.partnerLink,
-                partnerStats: user.partnerStats,
                 commission: user.commission,
                 createdAt: user.createdAt,
             });
@@ -243,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
             SWITCHhref();
             
             setTimeout(() => {
-                window.location.href = 'MAIN_MENU.html';
+                window.location.href = 'MAINPAD.html';
             }, 1000);
         });
     }
@@ -299,101 +244,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 createdAt: Date.now(), 
             });
             
-            NotificationManager.show('Регистрация успешна! Добро пожаловать!', 'success');
+            NotificationManager.show('Регистрация успешна! Добро пожаловать!', 'success'); // настроить
             SWITCHhref();
             
             setTimeout(() => {
-                window.location.href = 'MAIN_MENU.html';
+                window.location.href = 'MAINPAD.html';
             }, 1500);
         });
     }
     
-    if (partnerForm) {
-        partnerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (partnerError) partnerError.textContent = '';
-            
-            const company = partnerForm.company.value.trim();
-            const fam = partnerForm.fam.value.trim();
-            const name = partnerForm.name.value.trim();
-            const email = partnerForm.email.value.trim().toLowerCase();
-            const password = partnerForm.password.value;
-            
-            if (!company) {
-                if (partnerError) partnerError.textContent = 'Введите название компании или сайт';
-                return;
-            }
-            if (!name) {
-                if (partnerError) partnerError.textContent = 'Введите имя';
-                return;
-            }
-            
-            if (!fam) {
-                if (partnerError) partnerError.textContent = 'Введите фамилию';
-                return;
-            }
-
-            if (!emailRegex.test(email)) {
-                if (partnerError) partnerError.textContent = 'Введите корректный email';
-                return;
-            }
-            if (!password || password.length < 6) {
-                if (partnerError) partnerError.textContent = 'Пароль должен быть не менее 6 символов';
-                return;
-            }
-            
-            const users = getUsers();
-            if (users[email]) {
-                if (partnerError) partnerError.textContent = 'Пользователь с таким email уже существует';
-                return;
-            }
-            
-            const hash = await hashPassword(password);
-            
-            const partnerLink = `https://semanticsummarizer.ai/ref/${btoa(email).substring(0, 10)}`;
-            
-            users[email] = {
-                name,
-                fam,
-                company,
-                email,
-                passwordHash: hash,
-                userType: 'partner',
-                partnerLink: partnerLink,  
-                commission: 30,
-                createdAt: Date.now(),
-                partnerStats: {
-                    clicks: 0,
-                    conversions: 0,
-                    earnings: 0
-                }
-            };
-            
-            setUsers(users);
-            setCurrentUser({ 
-                name,
-                fam,
-                email, 
-                company,
-                userType: 'partner',
-                partnerLink: partnerLink,
-                commission: 30,
-                partnerStats: {
-                    clicks: 0,
-                    conversions: 0,
-                    earnings: 0
-                },
-                createdAt: Date.now() 
-            });
-            
-            NotificationManager.show('Вы зарегистрированы как Партнёр!', 'success');
-            SWITCHhref();
-            
-            setTimeout(() => {
-                window.location.href = 'MAIN_MENU.html';
-            }, 1500);
-        });
-    }
     
     const logoutBtnMain = document.getElementById('logoutBtnMain');
     if (logoutBtnMain) {
@@ -411,3 +270,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+

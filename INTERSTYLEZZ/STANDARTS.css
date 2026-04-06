@@ -7,6 +7,7 @@
     --BORDER_GREEN: solid 3px var(--ACCENT);
     --BORDER_GRAY: solid 2px var(--GRAY);
     --TEXTWHITE: white;
+    --TEXTBLACK: black;
 }
 
 body{
@@ -26,7 +27,6 @@ body{
     padding-right: 10vw;
     padding-bottom: 15vh;
     gap: 50px;
-    padding-top: 15vh;
 }
 
 .ZAGL{

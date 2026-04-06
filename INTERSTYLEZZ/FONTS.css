@@ -1,10 +1,11 @@
 @font-face {
     font-family: "BOUNDED";
-    src: url(BOUNDED-BLACK_0.TTF);
+    src: url(BOUNDED-VARIABLE.TTF);
+    font-weight: 800;
 }
 
 @font-face {
     font-family: "CONSOLAS";
-    src: url(CONSOLA.TTF);  
+    src: url(CONSOLA.TTF);
 }
 

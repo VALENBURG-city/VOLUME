@@ -33,7 +33,6 @@
         flex-direction: column;
         width: 100%;
         gap: 20px;
-        margin-bottom: 20px;
     }
 
         .FORMgroup {
@@ -50,18 +49,18 @@
 
             .FORMinput {
                 background: transparent;
-                border: var(--BORDER_GREEN);
                 padding: 15px;
                 color: var(--TEXTWHITE);
                 font-family: "CONSOLAS";
                 font-size: 1rem;
                 outline: none;
                 transition: 0.2s ease;
+                box-sizing: border-box;
+                border: var(--BORDER_GRAY);
             }
             
             .FORMinput:focus {
-                border-color: var(--VIOLETT);
-                box-shadow: 0 0 20px var(--VIOLETT);
+                border-color: var(--ACCENT);
             }
             
             .FORMinput::placeholder {
@@ -70,7 +69,7 @@
             
             .error-message {
                 color: red;
-                font-family: "BOUNDED";
+                font-family: "CONSOLAS";
                 font-size: 0.9rem;
                 margin-top: 5px;
                 min-height: 20px;
@@ -79,22 +78,20 @@
 
 
         .FORMsubmit {
-            background: var(--ACCENT);
-            color: var(--ULTRABLACK);
+            background: transparent;
+            color: var(--ACCENT);
             font-family: "BOUNDED";
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             padding: 15px;
             border: var(--BORDER_GREEN);
             cursor: pointer;
             transition: 0.2s ease;
             margin-top: 10px;
-            box-shadow: var(--ACCENT) 0 0 20px;
         }
 
             .FORMsubmit:hover {
-                background: transparent;
-                color: var(--TEXTWHITE);
-                border-color: var(--VIOLETT);
+                background: var(--ACCENT);
+                color: var(--TEXTBLACK);
                 box-shadow: none;
                 transform: scale(1.02);
             }
@@ -133,6 +130,26 @@
             box-shadow: 0 0 20px red;
         }
 
+
+.REGpole{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    color: var(--TEXTWHITE);
+    font-family: "CONSOLAS";
+    gap: 3pt;
+    font-size: 1rem;
+    margin: 0;
+}
+
+    .href{
+        color: var(--ACCENT);
+        text-decoration: none;
+    }
+
+        .href:hover{
+            text-decoration:underline;
+        }
 
         
 

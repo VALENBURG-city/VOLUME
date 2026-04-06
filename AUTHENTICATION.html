@@ -33,72 +33,17 @@
             <div id="login-error" class="error-message"></div>
 
             <button type="submit" class="FORMsubmit">Войти</button>
-        </form>
 
-        <form class="AUTHform hidden" id="register-form">
-            <div class="FORMgroup">
-                <label class="FORMlabel" for="reg-name">Имя</label>
-                <input class="FORMinput" type="text" id="reg-name" name="name" placeholder="Введите ваше имя" required>
+
+            <div class="REGpole">
+                <a>Ещё не создавали аккаунт? <a class="href" href="REGISTRATION.html">Зарегистрируйтесь здесь</a></a>
             </div>
-
-            <div class="FORMgroup">
-                <label class="FORMlabel" for="reg-fam">Фамилия</label>
-                <input class="FORMinput" type="text" id="reg-fam" name="fam" placeholder="Введите фамилию" required>
-            </div>
-
-            <div class="FORMgroup">
-                <label class="FORMlabel" for="reg-email">Электронная почта</label>
-                <input class="FORMinput" type="email" id="reg-email" name="email" placeholder="example@mail.com" required>
-            </div>
-
-            <div class="FORMgroup">
-                <label class="FORMlabel" for="reg-password">Пароль</label>
-                <input class="FORMinput" type="password" id="reg-password" name="password" placeholder="Минимум 6 символов" required>
-            </div>
-
-            <div id="register-error" class="error-message"></div>
-
-            <p class="error-message">ВНИМАНИЕ! В дальнейшем вы не сможете изменить Имя, Фамилию и Email.</p>
-
-            <button type="submit" class="FORMsubmit">Зарегистрироваться</button>
-        </form>
-
-
-        <form class="AUTHform hidden" id="partner-form">
-            <div class="FORMgroup">
-                <label class="FORMlabel" for="partner-company">Название компании / Сайт</label>
-                <input class="FORMinput" type="text" id="partner-company" name="company" placeholder="Например: example.com" required>
-            </div>
-
-            <div class="FORMgroup">
-                <label class="FORMlabel" for="partner-name">Имя</label>
-                <input class="FORMinput" type="text" id="partner-name" name="name" placeholder="Ваше имя" required>
-            </div>
-
-            <div class="FORMgroup">
-                <label class="FORMlabel" for="reg-fam">Фамилия</label>
-                <input class="FORMinput" type="text" id="partner-fam" name="fam" placeholder="Введите фамилию" required>
-            </div>
-
-            <div class="FORMgroup">
-                <label class="FORMlabel" for="partner-email">Электронная почта</label>
-                <input class="FORMinput" type="email" id="partner-email" name="email" placeholder="partner@example.com" required>
-            </div>
-
-            <div class="FORMgroup">
-                <label class="FORMlabel" for="partner-password">Пароль</label>
-                <input class="FORMinput" type="password" id="partner-password" name="password" placeholder="Минимум 6 символов" required>
-            </div>
-
-            <div id="partner-error" class="error-message"></div>
-
-            <p class="error-message">ВНИМАНИЕ! В дальнейшем вы не сможете изменить данные.</p>
-
-            <button type="submit" class="FORMsubmit">Стать партнёром</button>
         </form>
     </section>
 
-<script src="SCRIPTORES/AUTHscript.js"></script>
+  <div class="notification" id="notification"></div>
+
+<script src="SCRIPTORES/AUTH&REGscript.js"></script>
 
 </body>
 </html>

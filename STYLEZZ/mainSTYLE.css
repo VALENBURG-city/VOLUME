@@ -68,7 +68,7 @@
 
     .BENtext:hover{
         color: var(--ACCENT);
-            transform: scale(1.05);
+        transform: scale(1.05);
     }
 
 .GOBUTTONS{
@@ -91,7 +91,7 @@
     width: 23%;
     transition: 0.3s ease;
     box-sizing: border-box;
-    border: var(--BORDERg);
+    border: var(--BORDER_GREEN);
     text-decoration: none;
 }
 

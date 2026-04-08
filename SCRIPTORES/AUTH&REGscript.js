@@ -69,7 +69,7 @@ function logout() {
     SWITCHhref();
     
     setTimeout(() => {
-        window.location.href = 'MAINPAD.html';
+        window.location.href = 'MY_MUSIC.html';
     }, 1500);
 }
 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
             SWITCHhref();
             
             setTimeout(() => {
-                window.location.href = 'MAINPAD.html';
+                window.location.href = 'MY_MUSIC.html';
             }, 1000);
         });
     }
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
             SWITCHhref();
             
             setTimeout(() => {
-                window.location.href = 'MAINPAD.html';
+                window.location.href = 'MY_MUSIC.html';
             }, 1500);
         });
     }

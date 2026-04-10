@@ -1,0 +1,96 @@
+header{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    z-index: 999;
+}
+
+.TOPpartHEADER{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 3%;
+    background: var(--BACKGROUND);
+    width: 100vw;
+    height: 15vh;
+    border-bottom: var(--BORDER_GRAY);
+    box-sizing: border-box;
+}
+
+    .LOGO{
+        width: 500px;
+        filter: invert(1);
+    }
+
+    .left{
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        width: 10%;
+    }
+
+        .AVATAR{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .settings{
+            width: 40px;
+            height:40px;
+        }
+
+
+.LEFTpartHEADER{
+    position: absolute;
+    top: 15vh;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    background: var(--BACKGROUND);
+    width: 20vw;
+    height: 70vh;
+    border-left: var(--BORDER_GRAY);
+    border-bottom: var(--BORDER_GRAY);
+    box-sizing: border-box;
+    padding: 2%;
+}
+
+    .BUTTONS{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        gap: 5%;
+    }
+
+    li{
+        width: 100%;
+    }
+
+    .NAVBUTT{
+        display: flex;
+        justify-content: center;
+        color: var(--TEXTWHITE);
+        font-family: "BOUNDED";
+        font-size: 1rem;
+        text-decoration: none;
+        padding: 3%;
+        border: var(--BORDER_VOID);
+    }
+
+        .active{
+            color: var(--ACCENT);
+            border: var(--BORDER_GREEN);
+            box-sizing: border-box;
+        }

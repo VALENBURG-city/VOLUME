@@ -4,6 +4,7 @@
     --ACCENT: #2BFF00;
     --ULTRABLACK: #000000;
     --GRAY: #444444;
+    --BORDER_VOID: solid 3px #00000000;
     --BORDER_GREEN: solid 3px var(--ACCENT);
     --BORDER_GRAY: solid 2px var(--GRAY);
     --TEXTWHITE: white;
@@ -27,6 +28,16 @@ body{
     padding-right: 10vw;
     padding-bottom: 15vh;
     gap: 50px;
+}
+
+.ALT_GLOBALSPATIUM{
+    position: relative;
+    display: flex;
+    top: 15vh;
+    width: 79vw;
+    height: 100vh;
+    padding: 3%;
+    box-sizing: border-box;
 }
 
 .ZAGL{

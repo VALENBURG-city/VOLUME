@@ -1,0 +1,20 @@
+.FORMSPACE{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 2vh;
+}
+
+    .oneROWform{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+        .oneFORM{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2vh;
+        }

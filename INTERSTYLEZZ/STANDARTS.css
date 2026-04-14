@@ -26,30 +26,76 @@ body{
     padding-left: 10vw;
     padding-right: 10vw;
     padding-bottom: 15vh;
-    gap: 10%;
+    gap: 10vh;
+    margin-top: 5vh;
 }
 
 .ALT_GLOBALSPATIUM{
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: start;
     flex-direction: column;
     top: 15vh;
     width: 79vw;
-    height: 100vh;
     padding: 3% 5%;
     box-sizing: border-box;
-    gap: 10%;
+    gap: 5vh;
 }
 
-.ZAGL{
+.TITLE{
     display: flex;
     color: var(--TEXTWHITE);
     font-family: "BOUNDED";
     font-weight: 100;
-    font-size: 2.5rem;
-    margin-bottom: 100px;
+    font-size: 2.2rem;
+    margin: 0;
 }
+
+    .green{
+        color: var(--ACCENT);
+    }
+
+    .subTITLE{
+        display: flex;
+        color: var(--TEXTWHITE);
+        font-family: "CONSOLAS";
+        font-size: 1.3rem;
+        margin: 0 0 0 2vw;
+    }
+
+.FILEPOLE{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 50vh;
+    border: var(--BORDER_GRAY);
+    color: var(--GRAY);
+    font-family: "CONSOLAS";
+}
+
+
+.FORMPOLE{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 50px;
+    border: var(--BORDER_GRAY);
+    color: var(--GRAY);
+    font-family: "CONSOLAS";
+}
+
+    .cut{
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 500px;
+        height: 50px;
+    }
+
 
 .BUTTON_INTERNATIONAL{
     display: flex;

@@ -18,3 +18,9 @@
             align-items: flex-start;
             gap: 2vh;
         }
+
+.textgray{
+    color: var(--GRAY);
+    font-family: "CONSOLAS";
+    font-size: 1rem;
+}

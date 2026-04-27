@@ -20,7 +20,14 @@
         }
 
 .textgray{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--GRAY);
     font-family: "CONSOLAS";
     font-size: 1rem;
+    margin: 0;
+    width: 500px;
+    height: 400px;
+    white-space: pre-line;
 }

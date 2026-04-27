@@ -75,6 +75,18 @@ body{
     font-family: "CONSOLAS";
 }
 
+.quad{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 400px;
+    height: 400px;
+    border: var(--BORDER_GRAY);
+    color: var(--GRAY);
+    font-family: "CONSOLAS";
+}
+
 
 .FORMPOLE{
     display: flex;

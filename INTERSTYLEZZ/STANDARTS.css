@@ -55,13 +55,21 @@ body{
         color: var(--ACCENT);
     }
 
-    .subTITLE{
+    .TITLEinFORM{
         display: flex;
         color: var(--TEXTWHITE);
         font-family: "CONSOLAS";
         font-size: 1.3rem;
         margin: 0 0 0 2vw;
     }
+
+    .subTITLE{
+        display: flex;
+        color: var(--TEXTWHITE);
+        font-family: "CONSOLAS";
+        font-size: 1.3rem;
+    }
+
 
 .FILEPOLE{
     display: flex;

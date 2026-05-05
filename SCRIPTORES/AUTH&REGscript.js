@@ -14,7 +14,7 @@ function getUsers() {
     } catch {
         return {};
     }
-}
+
 
 function setUsers(users) {
     localStorage.setItem('semantic_users', JSON.stringify(users));

@@ -15,6 +15,7 @@ function getUsers() {
         return {};
     }
 
+}
 
 function setUsers(users) {
     localStorage.setItem('semantic_users', JSON.stringify(users));
@@ -270,3 +271,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+

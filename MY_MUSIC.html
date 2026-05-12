@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/INTERSTYLEZZ/HEADER.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/FOOTER.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/FONTS.css">
+    <link rel="stylesheet" href="/INTERSTYLEZZ/CAPDOWNL.css">
 </head>
 <body>
     
@@ -41,26 +42,32 @@
 
     <main class="ALT_GLOBALSPATIUM">
 
+        <!-- ВКЛАДКИ ФИЛЬТРАЦИИ -->
+        <div class="PANEL" id="filterPanel">
+            <button class="BUTTON_INTERNATIONAL filter-btn active" data-filter="released">ВЫПУЩЕННЫЕ</button>
+            <button class="BUTTON_INTERNATIONAL filter-btn" data-filter="deleted">УДАЛЕННЫЕ</button>
+            <button class="BUTTON_INTERNATIONAL filter-btn" data-filter="draft">ЧЕРНОВИКИ</button>
+        </div>
 
-        <div class="PANEL">
-            <a class="BUTTON_INTERNATIONAL" href="#">ВЫПУЩЕННЫЕ</a>
-            <a class="BUTTON_INTERNATIONAL" href="#">УДАЛЕННЫЕ</a>
-            <a class="BUTTON_INTERNATIONAL" href="#">ЧЕРНОВИКИ</a>
-        </div> <!--НУЖЕН СКРИПТ!-->
-
+        <!-- ПОИСК -->
         <section class="SPACE">
-            <form class="FORMPOLE cut">
+            <div class="FORMPOLE cut" id="searchContainer">
                 <img class="searchIIMG" src="MEDIA/ON PAGES/Search.png">
-                <p class="text">Поиск по названию...</p> <!--НУЖЕН СКРИПТ!-->
-            </form>
-            <form class="FILEPOLE">
-                <p class="text">Нет релизов</p>
-                <a class="text a" href="NEWREALIZE.html">Создать...</a>
-            </form>
+                <input type="text" id="searchInput" placeholder="Поиск по названию...">
+            </div>
+
+            <!-- КОНТЕЙНЕР РЕЛИЗОВ -->
+            <div id="releasesContainer" >
+                <!-- Заполняется скриптом -->
+            </div>
         </section>
         
     </main>
 
+    <div class="notification" id="notification"></div>
 
+    <script src="SCRIPTORES/CAPDOWNL.js"></script>
+
+    <script src="SCRIPTORES/RELEASES.js"></script>
 </body>
 </html>

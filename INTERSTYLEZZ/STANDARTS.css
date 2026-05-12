@@ -104,7 +104,7 @@ body{
     width: 100%;
     height: 50px;
     border: var(--BORDER_GRAY);
-    color: var(--GRAY);
+    color: var(--TEXTWHITE);
     font-family: "CONSOLAS";
 }
 
@@ -130,9 +130,41 @@ body{
     border: var(--BORDER_GREEN);
     transition: 0.3s ease;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
     .BUTTON_INTERNATIONAL:active{
         color: var(--TEXTBLACK);
         background: var(--ACCENT);
     }
+
+
+/* УВЕДОМЛЕНИЯ */
+.notification {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--BACKGROUND);
+    border: var(--BORDER_GREEN);
+    padding: 15px 25px;
+    color: var(--TEXTWHITE);
+    font-family: "BOUNDED";
+    transform: translateX(400px);
+    transition: transform 1s ease-out;
+    z-index: 9999;
+}
+
+.notification.show {
+    display: block;
+    transform: translateX(0);
+}
+
+.notification.success {
+    border-color: var(--ACCENT);
+}
+
+.notification.error {
+    border-color: red;
+    color: red;
+}

@@ -6,6 +6,15 @@
     gap: 2vh;
 }
 
+.trackCONT{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    width: 50%;
+}
+
     .oneROWform{
         display: flex;
         justify-content: space-between;
@@ -37,9 +46,14 @@
     align-items: center;
     justify-content: flex-start;
     width: 30%;
-    gap: 20px
-
+    gap: 20px;
+    cursor: pointer;
+    user-select: none;
 }
+
+    .oneROWpoint:hover .pointV {
+        color: var(--ACCENT);
+    }
 
 .point{
     display: flex;
@@ -48,6 +62,8 @@
     height: 20px;
     border: solid 6px var(--GRAY);
     transform: rotate(45deg);
+    transition: border-color 0.2s ease;
+    flex-shrink: 0;
 }
 
     .activee{
@@ -71,21 +87,125 @@
     flex-direction: column;
 }
 
+    /* Контейнер превью обложки в «Обзоре» */
+    #previewCoverContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300px;
+        height: 300px;
+        border: var(--BORDER_GRAY);
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    #previewCoverContainer img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
     .ALBUMIMG{
         display: flex;
         width: 300px;
         height: 300px;
-
     }
 
     .TRACKLIST{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         flex-direction: column;
         width: 100%;
-        height: 50vh;
+        min-height: 100px;
+        max-height: 50vh;
+        overflow-y: auto;
         border: var(--BORDER_GRAY);
         color: var(--GRAY);
         font-family: "CONSOLAS";
+        padding: 20px;
+        box-sizing: border-box;
     }
+
+/* ПОЛЯ ВВОДА В СТИЛЕ САЙТА */
+.inputREAL {
+    background: transparent;
+    padding: 0 15px;
+    color: var(--TEXTWHITE);
+    font-family: "CONSOLAS";
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.inputREAL::placeholder {
+    color: var(--GRAY);
+}
+
+.inputREAL:focus {
+    border-color: var(--ACCENT);
+}
+
+/* SELECT В СТИЛЕ САЙТА */
+.selectREAL {
+    background: var(--BACKGROUNDCOLORALLPAGE);
+    color: var(--TEXTWHITE);
+    font-family: "CONSOLAS";
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    padding: 0 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.selectREAL option {
+    background: var(--BACKGROUNDCOLORALLPAGE);
+    color: var(--TEXTWHITE);
+    padding: 10px;
+}
+
+.selectREAL option:checked {
+    background: var(--ACCENT);
+    color: var(--ULTRABLACK);
+}
+
+.selectREAL:focus {
+    border-color: var(--ACCENT);
+}
+
+/* ЗОНА ЗАГРУЗКИ */
+#coverDropZone {
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#coverPreview {
+    display: block;
+    z-index: 100;
+}
+
+#coverDropZone:hover {
+    border-color: var(--ACCENT);
+}
+
+
+#coverDropZone .textgray {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    margin: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+

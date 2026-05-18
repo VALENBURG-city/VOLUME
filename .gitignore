@@ -2,4 +2,7 @@
 "desktop.ini" 
 "*.docx" 
 "*.url" 
+"*.svg"
+"*.glb"
+"*.gltf"
 # "INTERSTYLEZZ/" 

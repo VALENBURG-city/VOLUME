@@ -1,0 +1,235 @@
+        /* Дополнительные стили для страницы аналитики */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin: 20px 0 30px 0;
+        }
+        
+        .stat-card {
+            background: var(--BACKGROUND);
+            border: var(--BORDER_GRAY);
+            padding: 20px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--ACCENT);
+            transform: translateY(-3px);
+        }
+        
+        .stat-value {
+            font-family: "BOUNDED", monospace;
+            font-size: 2.5rem;
+            color: var(--ACCENT);
+            margin: 10px 0 5px 0;
+            letter-spacing: 2px;
+        }
+        
+        .stat-label {
+            font-family: "CONSOLAS", monospace;
+            color: var(--GRAY);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .chart-container {
+            background: var(--BACKGROUND);
+            border: var(--BORDER_GRAY);
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+        
+        .chart-title {
+            font-family: "CONSOLAS", monospace;
+            color: var(--TEXTWHITE);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            border-left: 4px solid var(--ACCENT);
+            padding-left: 15px;
+        }
+        
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            gap: 15px;
+            height: 250px;
+            padding: 20px 0;
+        }
+        
+        .bar-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .bar {
+            width: 100%;
+            background: var(--ACCENT);
+            transition: height 0.3s ease;
+            min-height: 4px;
+            border-radius: 2px 2px 0 0;
+        }
+        
+        .bar-label {
+            font-family: "CONSOLAS", monospace;
+            color: var(--GRAY);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: "CONSOLAS", monospace;
+            color: var(--TEXTWHITE);
+        }
+        
+        .stats-table th,
+        .stats-table td {
+            border-bottom: var(--BORDER_GRAY);
+            padding: 12px 8px;
+            text-align: left;
+        }
+        
+        .stats-table th {
+            color: var(--ACCENT);
+            font-weight: normal;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .stats-table tr:hover td {
+            color: var(--ACCENT);
+        }
+        
+        .platform-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .platform-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: "CONSOLAS", monospace;
+            color: var(--TEXTWHITE);
+            border-bottom: 1px dashed var(--GRAY);
+            padding: 8px 0;
+        }
+        
+        .platform-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .platform-percent {
+            color: var(--ACCENT);
+            font-weight: bold;
+        }
+        
+        .progress-bar-bg {
+            width: 200px;
+            height: 8px;
+            background: var(--GRAY);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--ACCENT);
+            width: 0%;
+            border-radius: 4px;
+        }
+        
+        .geo-badge {
+            display: inline-block;
+            background: var(--BACKGROUND);
+            border: var(--BORDER_GRAY);
+            padding: 5px 12px;
+            margin: 0 8px 8px 0;
+            font-family: "CONSOLAS", monospace;
+            font-size: 0.8rem;
+            color: var(--TEXTWHITE);
+        }
+        
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 800px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            .bar-chart {
+                flex-wrap: wrap;
+                height: auto;
+            }
+            .bar-item {
+                min-width: 60px;
+            }
+            .stats-table th, .stats-table td {
+                font-size: 0.7rem;
+                padding: 8px 4px;
+            }
+        }
+        
+        .money-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .balance {
+            font-family: "BOUNDED";
+            font-size: 2.5rem;
+            color: var(--ACCENT);
+        }
+        
+        .period-switch {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .period-btn {
+            background: none;
+            border: var(--BORDER_GRAY);
+            padding: 6px 18px;
+            font-family: "CONSOLAS";
+            color: var(--TEXTWHITE);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .period-btn.active {
+            border-color: var(--ACCENT);
+            color: var(--ACCENT);
+        }
+        
+        .period-btn:hover {
+            border-color: var(--ACCENT);
+        }
+        
+        .insight-text {
+            font-family: "CONSOLAS";
+            color: var(--GRAY);
+            font-size: 0.8rem;
+            margin-top: 15px;
+            text-align: center;
+        }

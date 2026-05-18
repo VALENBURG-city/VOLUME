@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>АНАЛИТИКА</title>
-    
     <link rel="stylesheet" href="/INTERSTYLEZZ/STANDARTS.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/HEADER.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/FOOTER.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/FONTS.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/CAPDOWNL.css">
+    <link rel="stylesheet" href="STYLEZZ/analytSTYLE.css">
 </head>
 <body>
     
     <header>
-
         <section class="TOPpartHEADER">
             <a class="logotype" href="STARTPAD.html">
-                <img class="LOGO" src="/MEDIA/forHEADER/LOGO ver 1.png"> 
+                <img class="LOGO" src="/MEDIA/forHEADER/LOGO ver 1.png" alt="logo"> 
             </a>
-
             <div class="left">
-                <img class="AVATAR" src="/MEDIA/forHEADER/soviet olymp bear boxing.jpg">
-                <img class="settings" src="/MEDIA/forHEADER/settings.png">
+                <img class="AVATAR" src="/MEDIA/forHEADER/soviet olymp bear boxing.jpg" alt="avatar">
+                <img class="settings" src="/MEDIA/forHEADER/settings.png" alt="settings">
             </div>
         </section>
         <section class="LEFTpartHEADER">
-       
             <nav class="BUTTONS">
                 <ul>
                     <li><a href="NEWREALIZE.html" class="NAVBUTT">НОВЫЙ РЕЛИЗ</a></li>
@@ -35,16 +32,365 @@
                     <li><a href="SUPPORTS.html" class="NAVBUTT">ПОДДЕРЖКА</a></li>
                 </ul>
             </nav>
-            
         </section>
-
     </header>
 
-    <div class="ALT_GLOBALSPATIUM"></div>
+    <button class="scroll" id="SCROLLTOP">
+        <img src="MEDIA/ON PAGES/arrow-up.svg" class="arr" alt="up">
+    </button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="SCRIPTORES/CAPDOWNL.js"></script>
+
+    <main class="ALT_GLOBALSPATIUM">
+        
+        <!-- Заголовок страницы -->
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap;">
+            <h1 class="TITLE green" style="margin: 0;">АНАЛИТИКА</h1>
+            <div class="period-switch">
+                <button class="period-btn active">НЕДЕЛЯ</button>
+                <button class="period-btn">МЕСЯЦ</button>
+                <button class="period-btn">ГОД</button>
+            </div>
+        </div>
+        <p class="subTITLE" style="margin-top: -10px; color: var(--GRAY);">актуальные данные на 18 мая 2026</p>
+
+        <!-- Карточки метрик -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">ОБЩИЕ ПРОСЛУШИВАНИЯ</div>
+                <div class="stat-value">184 293</div>
+                <div class="stat-label">▲ +12% к прошл. неделе</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">АКТИВНЫЕ СЛУШАТЕЛИ</div>
+                <div class="stat-value">12 847</div>
+                <div class="stat-label">уникальных за 7 дней</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">ДОХОД (ОРИЕНТИРОВОЧНО)</div>
+                <div class="stat-value">$ 1 428</div>
+                <div class="stat-label">после вычета комиссии</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">ПЛОЩАДКИ</div>
+                <div class="stat-value">7</div>
+                <div class="stat-label">активных дистрибуций</div>
+            </div>
+        </div>
+
+        <!-- График прослушиваний (имитация) -->
+        <div class="chart-container">
+            <div class="chart-title">▸ ДИНАМИКА ПРОСЛУШИВАНИЙ (ПО ДНЯМ)</div>
+            <div class="bar-chart" id="dailyChart">
+                <!-- Динамически стилизовано через JS, но можно и статично, чтобы выглядело живо -->
+            </div>
+            <div class="insight-text">* данные агрегированы по всем площадкам, UTC+3</div>
+        </div>
+
+        <!-- Две колонки: лучшие треки + распределение по площадкам -->
+        <div class="two-columns">
+            <!-- ТОП треков -->
+            <div class="chart-container" style="margin-bottom: 0;">
+                <div class="chart-title">▸ ЛУЧШИЕ ТРЕКИ (ПО ПРОСЛУШИВАНИЯМ)</div>
+                <table class="stats-table">
+                    <thead>
+                        <tr><th>ТРЕК</th><th>ПРОСЛУШИВАНИЯ</th><th>ДОХОД</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Сумерки в Петербурге</td><td>42 891</td><td>$334</td></tr>
+                        <tr><td>Neon Drive</td><td>38 204</td><td>$298</td></tr>
+                        <tr><td>Космос внутри</td><td>29 543</td><td>$221</td></tr>
+                        <tr><td>Midnight Express</td><td>21 899</td><td>$167</td></tr>
+                        <tr><td>Эхо любви</td><td>18 432</td><td>$139</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Распределение по площадкам -->
+            <div class="chart-container" style="margin-bottom: 0;">
+                <div class="chart-title">▸ ПРОСЛУШИВАНИЯ ПО ПЛОЩАДКАМ</div>
+                <div class="platform-list">
+                    <div class="platform-row">
+                        <span class="platform-name">Spotify</span>
+                        <div class="progress-bar-bg"><div class="progress-fill" style="width: 41%"></div></div>
+                        <span class="platform-percent">41%</span>
+                    </div>
+                    <div class="platform-row">
+                        <span class="platform-name">Apple Music</span>
+                        <div class="progress-bar-bg"><div class="progress-fill" style="width: 28%"></div></div>
+                        <span class="platform-percent">28%</span>
+                    </div>
+                    <div class="platform-row">
+                        <span class="platform-name">YouTube Music</span>
+                        <div class="progress-bar-bg"><div class="progress-fill" style="width: 15%"></div></div>
+                        <span class="platform-percent">15%</span>
+                    </div>
+                    <div class="platform-row">
+                        <span class="platform-name">Яндекс Музыка</span>
+                        <div class="progress-bar-bg"><div class="progress-fill" style="width: 10%"></div></div>
+                        <span class="platform-percent">10%</span>
+                    </div>
+                    <div class="platform-row">
+                        <span class="platform-name">VK Музыка</span>
+                        <div class="progress-bar-bg"><div class="progress-fill" style="width: 4%"></div></div>
+                        <span class="platform-percent">4%</span>
+                    </div>
+                    <div class="platform-row">
+                        <span class="platform-name">Deezer + Tidal</span>
+                        <div class="progress-bar-bg"><div class="progress-fill" style="width: 2%"></div></div>
+                        <span class="platform-percent">2%</span>
+                    </div>
+                </div>
+                <div class="insight-text" style="margin-top: 20px;">* роялти начисляются согласно ставкам площадок</div>
+            </div>
+        </div>
+
+        <!-- Блок монетизации и география -->
+        <div class="two-columns">
+            <!-- Монетизация / выплаты -->
+            <div class="chart-container">
+                <div class="chart-title">▸ МОНЕТИЗАЦИЯ И ВЫПЛАТЫ</div>
+                <div class="money-block">
+                    <div>
+                        <div class="stat-label">ТЕКУЩИЙ БАЛАНС</div>
+                        <div class="balance">$ 1 428.30</div>
+                        <div class="stat-label">ожидается выплата: 10 июня 2026</div>
+                    </div>
+                    <button class="BUTTON_INTERNATIONAL" style="width: 180px; font-size: 0.9rem;">ЗАПРОСИТЬ ВЫПЛАТУ</button>
+                </div>
+                <div style="margin-top: 25px;">
+                    <div class="stat-label" style="margin-bottom: 10px;">ИСТОРИЯ НАЧИСЛЕНИЙ (МЕСЯЦ)</div>
+                    <table class="stats-table">
+                        <tr><th>ПЛАТФОРМА</th><th>ПРОСЛУШ.</th><th>НАЧИСЛЕНО</th></tr>
+                        <tr><td>Spotify</td><td>75 000</td><td>$585</td></tr>
+                        <tr><td>Apple Music</td><td>51 600</td><td>$400</td></tr>
+                        <tr><td>Яндекс Музыка</td><td>18 400</td><td>$112</td></tr>
+                        <tr><td>Остальные</td><td>39 293</td><td>$331</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- География слушателей -->
+            <div class="chart-container">
+                <div class="chart-title">▸ ГЕОГРАФИЯ СЛУШАТЕЛЕЙ (ТОП-5)</div>
+                <div>
+                    <span class="geo-badge">🇷🇺 Россия · 63%</span>
+                    <span class="geo-badge">🇺🇸 США · 14%</span>
+                    <span class="geo-badge">🇩🇪 Германия · 8%</span>
+                    <span class="geo-badge">🇫🇷 Франция · 5%</span>
+                    <span class="geo-badge">🇬🇧 Великобритания · 4%</span>
+                    <span class="geo-badge">🇺🇦 Украина · 3%</span>
+                    <span class="geo-badge">🇰🇿 Казахстан · 2%</span>
+                </div>
+                <div style="margin-top: 25px;">
+                    <div class="stat-label">ПРОГНОЗ РОСТА (NEXT MONTH)</div>
+                    <div class="stat-value" style="font-size: 1.5rem;">▲ +18%</div>
+                    <div class="progress-bar-bg" style="width: 100%; margin-top: 8px;"><div class="progress-fill" style="width: 64%;"></div></div>
+                    <div class="insight-text" style="margin-top: 12px;">основной приход трафика из плейлистов и рекомендательных систем</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Доп. блок - сводка по релизам -->
+        <div class="chart-container">
+            <div class="chart-title">▸ ЭФФЕКТИВНОСТЬ РЕЛИЗОВ (за 30 дней)</div>
+            <table class="stats-table">
+                <thead>
+                    <tr><th>НАЗВАНИЕ</th><th>ДАТА РЕЛИЗА</th><th>ПРОСЛУШИВАНИЯ</th><th>ДОХОД</th><th>СТАТУС</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Городские ритмы</td><td>01.04.2026</td><td>61 200</td><td>$478</td><td style="color: var(--ACCENT);">Активен</td></tr>
+                    <tr><td>Неизданное EP</td><td>15.03.2026</td><td>44 890</td><td>$342</td><td style="color: var(--ACCENT);">Активен</td></tr>
+                    <tr><td>Инструментал</td><td>10.02.2026</td><td>28 403</td><td>$215</td><td style="color: gray;">Завершён</td></tr>
+                    <tr><td>Сборник 2025</td><td>20.12.2025</td><td>79 800</td><td>$612</td><td style="color: gray;">Завершён</td></tr>
+                </tbody>
+            </table>
+            <div class="insight-text">* данные обновляются раз в сутки, реальная статистика может незначительно отличаться.</div>
+        </div>
 
 
+    </main>
+
+    <!-- Скрипт для генерации графика (имитация живой статистики) -->
+    <script>
+        // Генерация графика прослушиваний (барчарт)
+        function initChart() {
+            const container = document.getElementById('dailyChart');
+            if (!container) return;
+            // Данные за 7 дней
+            const dailyData = [12450, 18230, 21340, 19870, 25400, 31200, 29800];
+            const days = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
+            const maxVal = Math.max(...dailyData);
+            
+            container.innerHTML = '';
+            dailyData.forEach((value, idx) => {
+                const barHeight = (value / maxVal) * 200; // max 200px
+                const barDiv = document.createElement('div');
+                barDiv.className = 'bar-item';
+                barDiv.innerHTML = 
+                    <div class="bar" style="height: ${barHeight}px; background: var(--ACCENT);"></div>
+                    <div class="bar-label">${days[idx]}</div>
+                    <div class="bar-label" style="color: white;">${value.toLocaleString()}</div>
+                ;
+                container.appendChild(barDiv);
+            });
+        }
+
+        // Эмуляция переключения периода (только для вида - меняем текст в карточках)
+        const periodBtns = document.querySelectorAll('.period-btn');
+        const statValues = document.querySelectorAll('.stat-value');
+        const topTableBody = document.querySelector('.stats-table tbody');
+        const platformPercent = document.querySelectorAll('.platform-percent');
+        const progressFills = document.querySelectorAll('.progress-fill');
+        
+        function updateDemoData(period) {
+            // Простая симуляция изменения данных для "вида"
+[18.05.2026 22:38] † ĐłVɆⱤ$łVɆ †: if (period === 'НЕДЕЛЯ') {
+                if (statValues[0]) statValues[0].innerText = '184 293';
+                if (statValues[1]) statValues[1].innerText = '12 847';
+                if (statValues[2]) statValues[2].innerText = '$ 1 428';
+                if (statValues[3]) statValues[3].innerText = '7';
+                // обновим таблицу топ треков
+                if (topTableBody) {
+                    topTableBody.innerHTML = 
+                        <tr><td>Сумерки в Петербурге</td><td>42 891</td><td>$334</td></tr>
+                        <tr><td>Neon Drive</td><td>38 204</td><td>$298</td></tr>
+                        <tr><td>Космос внутри</td><td>29 543</td><td>$221</td></tr>
+                        <tr><td>Midnight Express</td><td>21 899</td><td>$167</td></tr>
+                        <tr><td>Эхо любви</td><td>18 432</td><td>$139</td></tr>
+                    ;
+                }
+                if (platformPercent.length) {
+                    const newPerc = ['41%', '28%', '15%', '10%', '4%', '2%'];
+                    platformPercent.forEach((el, i) => { if(newPerc[i]) el.innerText = newPerc[i]; });
+                    if(progressFills.length) {
+                        progressFills[0].style.width = '41%';
+                        progressFills[1].style.width = '28%';
+                        progressFills[2].style.width = '15%';
+                        progressFills[3].style.width = '10%';
+                        progressFills[4].style.width = '4%';
+                        progressFills[5].style.width = '2%';
+                    }
+                }
+                // Баланс
+                const balanceDiv = document.querySelector('.balance');
+                if(balanceDiv) balanceDiv.innerText = '$ 1 428.30';
+                // Изменяем гео-проценты тоже для динамики
+                const geoBadges = document.querySelectorAll('.geo-badge');
+                if(geoBadges.length) {
+                    geoBadges[0].innerHTML = '🇷🇺 Россия · 63%';
+                    geoBadges[1].innerHTML = '🇺🇸 США · 14%';
+                }
+            } else if (period === 'МЕСЯЦ') {
+                if (statValues[0]) statValues[0].innerText = '702 881';
+                if (statValues[1]) statValues[1].innerText = '41 203';
+                if (statValues[2]) statValues[2].innerText = '$ 5 376';
+                if (statValues[3]) statValues[3].innerText = '7';
+                if (topTableBody) {
+                    topTableBody.innerHTML = 
+                        <tr><td>Neon Drive</td><td>158 902</td><td>$1 240</td></tr>
+                        <tr><td>Сумерки в Петербурге</td><td>147 328</td><td>$1 149</td></tr>
+                        <tr><td>Космос внутри</td><td>112 543</td><td>$877</td></tr>
+                        <tr><td>Midnight Express</td><td>89 204</td><td>$695</td></tr>
+                        <tr><td>Эхо любви</td><td>74 109</td><td>$578</td></tr>
+                    ;
+                }
+                if (platformPercent.length) {
+                    const newPerc = ['39%', '30%', '16%', '9%', '4%', '2%'];
+                    platformPercent.forEach((el, i) => { if(newPerc[i]) el.innerText = newPerc[i]; });
+                    if(progressFills.length) {
+                        progressFills[0].style.width = '39%';
+                        progressFills[1].style.width = '30%';
+                        progressFills[2].style.width = '16%';
+                        progressFills[3].style.width = '9%';
+                        progressFills[4].style.width = '4%';
+                        progressFills[5].style.width = '2%';
+                    }
+                }
+                const balanceDiv = document.querySelector('.balance');
+                if(balanceDiv) balanceDiv.innerText = '$ 5 376.80';
+                const geoBadges = document.querySelectorAll('.geo-badge');
+[18.05.2026 22:38] † ĐłVɆⱤ$łVɆ †: if(geoBadges.length) {
+                    geoBadges[0].innerHTML = '🇷🇺 Россия · 58%';
+                    geoBadges[1].innerHTML = '🇺🇸 США · 18%';
+                }
+            } else if (period === 'ГОД') {
+                if (statValues[0]) statValues[0].innerText = '6 413 912';
+                if (statValues[1]) statValues[1].innerText = '189 432';
+                if (statValues[2]) statValues[2].innerText = '$ 48 221';
+                if (statValues[3]) statValues[3].innerText = '7';
+                if (topTableBody) {
+                    topTableBody.innerHTML = 
+                        <tr><td>Сумерки в Петербурге</td><td>1 920 483</td><td>$14 904</td></tr>
+                        <tr><td>Neon Drive</td><td>1 812 404</td><td>$14 057</td></tr>
+                        <tr><td>Космос внутри</td><td>1 234 521</td><td>$9 581</td></tr>
+                        <tr><td>Midnight Express</td><td>892 013</td><td>$6 922</td></tr>
+                        <tr><td>Сборник 2025</td><td>554 491</td><td>$4 300</td></tr>
+                    ;
+                }
+                if (platformPercent.length) {
+                    const newPerc = ['43%', '26%', '14%', '11%', '4%', '2%'];
+                    platformPercent.forEach((el, i) => { if(newPerc[i]) el.innerText = newPerc[i]; });
+                    if(progressFills.length) {
+                        progressFills[0].style.width = '43%';
+                        progressFills[1].style.width = '26%';
+                        progressFills[2].style.width = '14%';
+                        progressFills[3].style.width = '11%';
+                        progressFills[4].style.width = '4%';
+                        progressFills[5].style.width = '2%';
+                    }
+                }
+                const balanceDiv = document.querySelector('.balance');
+                if(balanceDiv) balanceDiv.innerText = '$ 48 221.00';
+                const geoBadges = document.querySelectorAll('.geo-badge');
+                if(geoBadges.length) {
+                    geoBadges[0].innerHTML = '🇷🇺 Россия · 61%';
+                    geoBadges[1].innerHTML = '🇺🇸 США · 16%';
+                }
+            }
+            // обновим мелкие элементы
+            const insight = document.querySelectorAll('.insight-text');
+            if(insight.length) insight[0].innerHTML = * данные за ${period.toLowerCase()} (демо-симуляция);
+        }
+
+        periodBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                periodBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const periodText = btn.innerText.trim();
+                updateDemoData(periodText);
+            });
+        });
+        
+        // запускаем график и базовые данные
+        initChart();
+        
+        // Также подправим таблицу эффективности релизов и доход от площадок, чтоб немного адаптировать под периоды (но оставим статичной для простоты)
+        // Дополнительно: при клике на кнопку выплаты показываем уведомление (используем существующую систему нотификаций)
+        const withdrawBtn = document.querySelector('.money-block .BUTTON_INTERNATIONAL');
+        if (withdrawBtn) {
+            withdrawBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Эмулируем уведомление
+                let notif = document.getElementById('notification');
+                if (!notif) {
+                    notif = document.createElement('div');
+                    notif.id = 'notification';
+                    notif.className = 'notification';
+                    document.body.appendChild(notif);
+                }
+                notif.innerText = 'ЗАПРОС НА ВЫПЛАТУ ОТПРАВЛЕН (ДЕМО-РЕЖИМ)';
+                notif.classList.add('show', 'success');
+                setTimeout(() => {
+                    notif.classList.remove('show');
+                }, 3000);
+            });
+        }
+
+        // Для страницы скролл уже есть
+    </script>
+    <script src="SCRIPTORES/SCROLLBUTT.js"></script>
+    <script src="SCRIPTORES/ANALYTICSGEN.js"></script>
+    <!-- дополнительно подключать CAPDOWNL не требуется -->
 </body>
 </html>
+`

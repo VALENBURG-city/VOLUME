@@ -143,8 +143,8 @@ body{
 .notification {
     display: none;
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 0;
+    right: 41vw;
     background: var(--BACKGROUND);
     border: var(--BORDER_GREEN);
     padding: 15px 25px;
@@ -156,7 +156,7 @@ body{
 }
 
 .notification.show {
-    display: block;
+    display: flex;
     transform: translateX(0);
 }
 
@@ -167,4 +167,210 @@ body{
 .notification.error {
     border-color: red;
     color: red;
+}
+
+
+
+.scroll{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    bottom: 30px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--BACKGROUNDCOLORALLPAGE);
+    border: var(--BORDER_GREEN);
+    color: var(--TEXTWHITE);
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    font-size: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.1s ease-in-out;
+    z-index: 1000;
+    }
+
+    .scroll.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s ease-in-out;
+    transform: translateX(-30px);
+    }
+
+        .scroll:hover {
+        background-color: var(--ACCENT);
+        transform: scale(1.2) translateX(-30px);
+        color: var(--ACCENT);
+        border-color: var(--BORDER_GREEN);
+        }
+
+    .arr{
+        width: 80%;
+        filter: invert(1);
+        transition: 0.3s ease;
+    }
+
+        .scroll:hover .arr{
+            filter: invert(0);
+        }
+
+
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--BACKGROUND) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.activEEE {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background: var(--BACKGROUNDCOLORALLPAGE);
+    border: var(--BORDER_GRAY);
+    padding: 0;
+    width: 90%;
+    max-width: 450px;
+    transform: scale(0.9) translateY(-20px);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+.modal-header {
+    padding: 20px 24px;
+    border-bottom: var(--BORDER_GRAY);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.modal-header h2 {
+    margin: 0;
+    font-family: 'CONSOLAS', monospace;
+    font-size: 1.5rem;
+    color:red;
+    letter-spacing: 1px;
+}
+
+.modal-content {
+    padding: 24px;
+}
+
+.modal-content p {
+    margin: 0 0 8px 0;
+    font-family: 'CONSOLAS', monospace;
+    font-size: 1rem;
+    color: var(--TEXTWHITE);
+    line-height: 1.5;
+}
+
+
+.modal-content .warning-text {
+    color: var(--ACCENT);
+    font-family: "CONSOLAS";
+    font-size: 1rem;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-footer {
+    padding: 20px 24px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.modal-btn {
+    padding: 10px 24px;
+    font-family: 'CONSOLAS';
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.modal-btn-cancel {
+    background: var(--GRAY);
+    color:var(--TEXTWHITE);
+    border: var(--BORDER_GREEN);
+}
+
+.modal-btn-cancel:hover {
+    background: var(--ACCENT);
+    border-color: var(--ACCENT);
+    color: var(--TEXTBLACK);
+}
+
+.modal-btn-confirm {
+    background: var(--BACKGROUNDCOLORALLPAGE);
+    border: var(--BORDER_GRAY);
+    color: white;
+}
+
+.modal-btn-confirm:hover {
+    border-color: red;
+    background: red;
+
+}
+
+
+
+
+.progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: none;
+    z-index: 8887;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--ACCENT);
+    transition: width 0.3s ease-out;
+    position: relative;
+}
+
+
+/* Анимация при достижении 100% */
+.progress-bar-fill.complete {
+    background: var(--ACCENT);
+}
+
+
+/* Для страниц без прогресс-бара - скрываем */
+body.no-progress .progress-bar-container {
+    display: none;
 }

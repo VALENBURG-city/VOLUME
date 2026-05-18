@@ -1,5 +1,5 @@
 // ============================================
-// RELEASE MANAGER v1.4 — ГАРАНТИРОВАННОЕ СОХРАНЕНИЕ
+// RELEASE MANAGER v1.4 — ЧИСТАЯ ВЕРСИЯ
 // CRUD для релизов + NEWREALIZE + MY_MUSIC
 // Хранение: Local Storage
 // ============================================
@@ -51,32 +51,21 @@ function showNotification(msg, type) {
 function getAllReleases() {
     try {
         const data = localStorage.getItem(STORAGE_KEY);
-        console.log('📦 getAllReleases — данные из LS:', data ? 'есть' : 'пусто');
         const releases = data ? JSON.parse(data) : [];
-        console.log('📦 getAllReleases — всего релизов:', releases.length);
-        return releases;
+        return Array.isArray(releases) ? releases : [];
     } catch (e) {
-        console.error('❌ Ошибка чтения Local Storage:', e);
         return [];
     }
 }
 
 function saveAllReleases(releases) {
     try {
-        const json = JSON.stringify(releases);
-        localStorage.setItem(STORAGE_KEY, json);
-        console.log('💾 saveAllReleases — сохранено релизов:', releases.length);
-        
-        // Диспатчим событие для синхронизации
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(releases));
         window.dispatchEvent(new CustomEvent('releasesUpdated'));
-    } catch (e) {
-        console.error('❌ Ошибка записи в Local Storage:', e);
-        // Просто логируем ошибку, без alert
-    }
+    } catch (e) {}
 }
 
 function createRelease(releaseData) {
-    console.log('🔨 createRelease — начинаем создание');
     const releases = getAllReleases();
     
     const newRelease = {
@@ -97,26 +86,8 @@ function createRelease(releaseData) {
         createdAt: new Date().toISOString()
     };
     
-    console.log('🔨 Новый релиз:', {
-        id: newRelease.id,
-        title: newRelease.title,
-        status: newRelease.status,
-        tracks: newRelease.tracks.length,
-        hasCover: !!newRelease.cover
-    });
-    
     releases.push(newRelease);
     saveAllReleases(releases);
-    
-    // Проверяем, что релиз точно в хранилище
-    const allAfterSave = getAllReleases();
-    const found = allAfterSave.find(r => r.id === newRelease.id);
-    if (found) {
-        console.log('✅ Релиз точно в Local Storage:', found.title);
-    } else {
-        console.error('❌ РЕЛИЗ НЕ СОХРАНИЛСЯ!');
-    }
-    
     return newRelease;
 }
 
@@ -161,11 +132,8 @@ function publishRelease(id) {
 
 function getReleasesByStatus(status) {
     const releases = getAllReleases();
-    console.log(`🔍 getReleasesByStatus("${status}") — всего релизов:`, releases.length);
     if (status === 'all') return releases;
-    const filtered = releases.filter(r => r.status === status);
-    console.log(`🔍 Отфильтровано по "${status}":`, filtered.length);
-    return filtered;
+    return releases.filter(r => r.status === status);
 }
 
 function searchReleases(query) {
@@ -180,11 +148,98 @@ function getReleaseById(id) {
     return releases.find(r => r.id === id) || null;
 }
 
+// ==================== МОДАЛЬНОЕ ОКНО ====================
+
+class DeleteConfirmModal {
+    constructor() {
+        this.modalElement = null;
+        this.currentReleaseId = null;
+        this.currentReleaseTitle = null;
+        this.onConfirmCallback = null;
+        this.init();
+    }
+
+    init() {
+        this.modalElement = document.createElement('div');
+        this.modalElement.className = 'modal-overlay';
+        this.modalElement.innerHTML = `
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h2>Внимание!</h2>
+                </div>
+                <div class="modal-content">
+                    <p>Вы действительно хотите удалить этот релиз?</p>
+                    <div class="warning-text">
+                        <span>Удалённые релизы можно восстановить в разделе "УДАЛЁННЫЕ"</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn modal-btn-confirm" id="modalConfirmBtn">УДАЛИТЬ</button>
+                    <button class="modal-btn modal-btn-cancel" id="modalCancelBtn">ОТМЕНА</button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(this.modalElement);
+        
+        const cancelBtn = this.modalElement.querySelector('#modalCancelBtn');
+        const confirmBtn = this.modalElement.querySelector('#modalConfirmBtn');
+        const overlay = this.modalElement;
+        
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', () => this.close());
+        }
+        
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', () => this.confirm());
+        }
+        
+        if (overlay) {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    this.close();
+                }
+            });
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isOpen()) {
+                this.close();
+            }
+        });
+    }
+    
+    show(releaseId, releaseTitle, onConfirm) {
+        this.currentReleaseId = releaseId;
+        this.currentReleaseTitle = releaseTitle;
+        this.onConfirmCallback = onConfirm;
+        this.modalElement.classList.add('activEEE');
+    }
+    
+    close() {
+        this.modalElement.classList.remove('activEEE');
+        this.currentReleaseId = null;
+        this.currentReleaseTitle = null;
+        this.onConfirmCallback = null;
+    }
+    
+    confirm() {
+        if (this.onConfirmCallback && this.currentReleaseId) {
+            this.onConfirmCallback(this.currentReleaseId);
+        }
+        this.close();
+    }
+    
+    isOpen() {
+        return this.modalElement.classList.contains('activEEE');
+    }
+}
+
+let deleteModal = null;
+
 // ==================== СТРАНИЦА NEWREALIZE ====================
 
 function initNewReleasePage() {
-    console.log('=== 🎵 ИНИЦИАЛИЗАЦИЯ NEWREALIZE ===');
-    
     const titleInput       = document.getElementById('releaseTitle');
     const languageSelect   = document.getElementById('releaseLanguage');
     const genreSelect      = document.getElementById('releaseGenre');
@@ -195,7 +250,6 @@ function initNewReleasePage() {
     const customDateTime   = document.getElementById('customDateTime');
     const formMessage      = document.getElementById('formMessage');
 
-    // ---- ОБЛОЖКА ----
     const coverDropZone = document.getElementById('coverDropZone');
     const coverInput    = document.getElementById('coverInput');
     const coverPreview  = document.getElementById('coverPreview');
@@ -238,7 +292,6 @@ function initNewReleasePage() {
         updatePreview();
     }
 
-    // ---- ДАТА РЕЛИЗА ----
     let releaseDateMode = 'immediate';
     const dateImmediate = document.getElementById('releaseDateImmediate');
     const dateCustom    = document.getElementById('releaseDateCustom');
@@ -255,17 +308,16 @@ function initNewReleasePage() {
         const pointCustom    = dateCustom.querySelector('.point');
         
         if (mode === 'immediate') {
-            pointImmediate.classList.add('activee');
-            pointCustom.classList.remove('activee');
-            customDateContainer.style.display = 'none';
+            if (pointImmediate) pointImmediate.classList.add('activee');
+            if (pointCustom) pointCustom.classList.remove('activee');
+            if (customDateContainer) customDateContainer.style.display = 'none';
         } else {
-            pointImmediate.classList.remove('activee');
-            pointCustom.classList.add('activee');
-            customDateContainer.style.display = 'block';
+            if (pointImmediate) pointImmediate.classList.remove('activee');
+            if (pointCustom) pointCustom.classList.add('activee');
+            if (customDateContainer) customDateContainer.style.display = 'block';
         }
     }
 
-    // ---- ТРЕКЛИСТ ----
     let tracks = [];
     const tracklistContainer = document.getElementById('tracklistContainer');
     const addTrackBtn        = document.getElementById('addTrackBtn');
@@ -315,9 +367,11 @@ function initNewReleasePage() {
             const file = e.target.files[0];
             if (file) {
                 tracks[trackIndex].file = await fileToBase64(file);
-                tracks[trackIndex].fileName = file.name;
-                fileZone.querySelector('p').textContent = 'Загружено';
-                fileZone.querySelector('p').style.color = 'var(--ACCENT)';
+                const p = fileZone.querySelector('p');
+                if (p) {
+                    p.textContent = 'Загружено';
+                    p.style.color = 'var(--ACCENT)';
+                }
                 updatePreview();
             }
         });
@@ -338,12 +392,11 @@ function initNewReleasePage() {
 
     function renderAllTracks() {
         const existingTracks = [...tracks];
-        tracklistContainer.innerHTML = '';
+        if (tracklistContainer) tracklistContainer.innerHTML = '';
         tracks = [];
         existingTracks.forEach(t => addTrack(t.name, t.file));
     }
 
-    // ---- ПРЕВЬЮ ----
     function updatePreview() {
         const previewTitle = document.getElementById('previewTitle');
         const previewArtist = document.getElementById('previewArtist');
@@ -377,14 +430,11 @@ function initNewReleasePage() {
     if (titleInput) titleInput.addEventListener('input', updatePreview);
     if (artistInput) artistInput.addEventListener('input', updatePreview);
 
-    // ---- КНОПКА ОТПРАВКИ ----
     const submitBtn = document.getElementById('submitRelease');
     if (submitBtn) {
-        // ПРЕВРАЩАЕМ ССЫЛКУ В КНОПКУ
         submitBtn.removeAttribute('href');
         submitBtn.style.cursor = 'pointer';
         
-        // Удаляем старые обработчики (на всякий случай)
         const newSubmitBtn = submitBtn.cloneNode(true);
         submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
         
@@ -392,26 +442,19 @@ function initNewReleasePage() {
             e.preventDefault();
             e.stopPropagation();
             
-            console.log('=== 🎵 КЛИК ПО "СОЗДАТЬ РЕЛИЗ" ===');
-            
-            // Валидация
             if (!titleInput.value.trim()) {
                 showFormMessage('Укажите название релиза', 'error');
-                console.log('❌ Нет названия');
                 return false;
             }
             if (!artistInput.value.trim()) {
                 showFormMessage('Укажите исполнителя', 'error');
-                console.log('❌ Нет исполнителя');
                 return false;
             }
             if (tracks.length === 0 || tracks.every(t => !t.name.trim())) {
                 showFormMessage('Добавьте хотя бы один трек с названием', 'error');
-                console.log('❌ Нет треков');
                 return false;
             }
 
-            // Сбор данных
             const releaseData = {
                 title: titleInput.value.trim(),
                 language: languageSelect ? languageSelect.value : '',
@@ -421,8 +464,7 @@ function initNewReleasePage() {
                 cover: coverBase64,
                 tracks: tracks.map(t => ({ 
                     name: t.name.trim(), 
-                    file: t.file || '', 
-                    // fileName: t.fileName || '' 
+                    file: t.file || ''
                 })),
                 platforms: platformsSelect ? [platformsSelect.value] : ['ALL'],
                 countries: countriesSelect ? [countriesSelect.value] : ['ALL'],
@@ -430,42 +472,22 @@ function initNewReleasePage() {
                 customDate: releaseDateMode === 'custom' ? (customDateTime ? customDateTime.value : '') : ''
             };
 
-            console.log('📦 Данные для создания:', releaseData);
-            
-            // СОЗДАЁМ РЕЛИЗ
             const newRelease = createRelease(releaseData);
             
             if (newRelease) {
-                console.log('✅ Релиз создан, ID:', newRelease.id);
+                showFormMessage('РЕЛИЗ СОХРАНЁН В ЧЕРНОВИКИ!', 'success');
+                showNotification('Релиз "' + newRelease.title + '" создан', 'success');
                 
-                // ПРОВЕРЯЕМ, ЧТО ОН ТОЧНО В ХРАНИЛИЩЕ
-                const check = getAllReleases();
-                const found = check.find(r => r.id === newRelease.id);
-                
-                if (found) {
-                    console.log('✅ Релиз точно в LS:', found.title, found.status);
-                    showFormMessage('РЕЛИЗ СОХРАНЁН В ЧЕРНОВИКИ!', 'success');
-                    showNotification('Релиз "' + newRelease.title + '" создан', 'success');
-                    
-                    // Очищаем форму и переходим
-                    setTimeout(() => {
-                        resetForm();
-                        window.location.href = 'MY_MUSIC.html';
-                    }, 2000);
-                } else {
-                    console.error('❌ РЕЛИЗ НЕ НАЙДЕН В ХРАНИЛИЩЕ ПОСЛЕ СОХРАНЕНИЯ!');
-                    showFormMessage('Ошибка сохранения! Проверьте консоль', 'error');
-                }
+                setTimeout(() => {
+                    resetForm();
+                    window.location.href = 'MY_MUSIC.html';
+                }, 2000);
             } else {
                 showFormMessage('Ошибка при создании релиза', 'error');
             }
             
             return false;
         });
-        
-        console.log('✅ Обработчик на кнопку СОЗДАТЬ установлен');
-    } else {
-        console.error('❌ Кнопка submitRelease не найдена в DOM!');
     }
 
     function showFormMessage(msg, type) {
@@ -475,17 +497,19 @@ function initNewReleasePage() {
     }
 
     function resetForm() {
-        titleInput.value = '';
+        if (titleInput) titleInput.value = '';
         if (languageSelect) languageSelect.value = '';
         if (genreSelect) genreSelect.value = '';
         if (labelInput) labelInput.value = '';
-        artistInput.value = '';
+        if (artistInput) artistInput.value = '';
         coverBase64 = '';
         
-        coverPreview.src = 'MEDIA/ON PAGES/File.png';
-        coverPreview.style.width = '80px';
-        coverPreview.style.height = 'auto';
-        coverPreview.style.objectFit = 'initial';
+        if (coverPreview) {
+            coverPreview.src = 'MEDIA/ON PAGES/File.png';
+            coverPreview.style.width = '80px';
+            coverPreview.style.height = 'auto';
+            coverPreview.style.objectFit = 'initial';
+        }
         
         const previewIMG = document.getElementById('previewCoverIMG');
         if (previewIMG) {
@@ -505,43 +529,51 @@ function initNewReleasePage() {
         if (formMessage) formMessage.textContent = '';
     }
 
-    // Стартовый трек
     addTrack();
-    console.log('✅ NEWREALIZE готов к работе');
 }
 
 // ==================== СТРАНИЦА MY_MUSIC ====================
 
 function initMyMusicPage() {
-    console.log('=== 🎨 ИНИЦИАЛИЗАЦИЯ MY_MUSIC ===');
+    if (!deleteModal) {
+        deleteModal = new DeleteConfirmModal();
+    }
     
     let currentFilter = 'released';
     const releasesContainer = document.getElementById('releasesContainer');
     const searchInput = document.getElementById('searchInput');
     const filterBtns = document.querySelectorAll('.filter-btn');
 
-    // ФИЛЬТРЫ
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentFilter = btn.dataset.filter;
-            console.log('🔘 Фильтр:', currentFilter);
             renderReleases();
         });
     });
 
-    // ПОИСК
     if (searchInput) {
         searchInput.addEventListener('input', () => {
             renderReleases();
         });
     }
 
-    // ОТРИСОВКА
+    function deleteWithConfirm(releaseId, releaseTitle) {
+        deleteModal.show(releaseId, releaseTitle, (confirmedId) => {
+            deleteRelease(confirmedId);
+            showNotification(`Релиз "${releaseTitle}" перемещён в корзину`, 'success');
+            renderReleases();
+        });
+    }
+
+    function publishWithConfirm(releaseId, releaseTitle) {
+        publishRelease(releaseId);
+        showNotification(`Релиз "${releaseTitle}" опубликован!`, 'success');
+        renderReleases();
+    }
+
     function renderReleases() {
-        console.log('🎨 ОТРИСОВКА — фильтр:', currentFilter);
-        
         const query = searchInput ? searchInput.value.trim() : '';
         let releases;
 
@@ -551,17 +583,7 @@ function initMyMusicPage() {
             releases = getReleasesByStatus(currentFilter);
         }
 
-        console.log(`🎨 Найдено ${releases.length} релизов для отображения`);
-        
-        // Выведем все релизы в консоль для диагностики
-        releases.forEach(r => {
-            console.log(`  - "${r.title}" [${r.status}] треков: ${r.tracks?.length || 0}`);
-        });
-
-        if (!releasesContainer) {
-            console.error('❌ releasesContainer не найден!');
-            return;
-        }
+        if (!releasesContainer) return;
 
         if (releases.length === 0) {
             showEmptyState(query, currentFilter);
@@ -570,8 +592,6 @@ function initMyMusicPage() {
 
         releasesContainer.innerHTML = releases.map(release => createReleaseCard(release)).join('');
         attachCardListeners();
-        
-        console.log('✅ Отрисовка завершена');
     }
 
     function createReleaseCard(release) {
@@ -597,16 +617,16 @@ function initMyMusicPage() {
         let actionsHTML = '';
         if (release.status === 'draft') {
             actionsHTML = `
-                <button class="success" data-action="publish" data-id="${release.id}">ОПУБЛИКОВАТЬ</button>
-                <button class="danger" data-action="delete" data-id="${release.id}">УДАЛИТЬ</button>
+                <button class="success" data-action="publish" data-id="${release.id}" data-title="${escapeHTML(release.title)}">ОПУБЛИКОВАТЬ</button>
+                <button class="danger" data-action="delete" data-id="${release.id}" data-title="${escapeHTML(release.title)}">УДАЛИТЬ</button>
             `;
         } else if (release.status === 'released') {
             actionsHTML = `
-                <button class="danger" data-action="delete" data-id="${release.id}">✕</button>
+                <button class="danger" data-action="delete" data-id="${release.id}" data-title="${escapeHTML(release.title)}">УДАЛИТЬ</button>
             `;
         } else if (release.status === 'deleted') {
             actionsHTML = `
-                <button class="success" data-action="restore" data-id="${release.id}">ВОССТАНОВИТЬ</button>
+                <button class="success" data-action="restore" data-id="${release.id}" data-title="${escapeHTML(release.title)}">ВОССТАНОВИТЬ</button>
             `;
         }
 
@@ -623,7 +643,9 @@ function initMyMusicPage() {
                         <span>${date}</span>
                     </div>
                 </div>
-                <span class="release-card-status" style="color: ${status.color}; border: solid 2px ${status.borderColor}; font-family: CONSOLAS; font-size: 1.2rem; padding: 4px 12px;">${status.text}</span>
+                <span class="release-card-status" style="color: ${status.color}; border: solid 2px ${status.borderColor}; 
+                    font-family: CONSOLAS; font-size: 1rem; padding: 6px 12px;">${status.text}
+                </span>
                 <div class="release-card-actions">${actionsHTML}</div>
             </div>
         `;
@@ -631,28 +653,28 @@ function initMyMusicPage() {
 
     function attachCardListeners() {
         document.querySelectorAll('[data-action]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+            const newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+            
+            newBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const action = btn.dataset.action;
-                const id = btn.dataset.id;
-                
-                console.log('🖱️ Действие:', action, 'ID:', id);
+                const action = newBtn.dataset.action;
+                const id = newBtn.dataset.id;
+                const title = newBtn.dataset.title || 'Релиз';
                 
                 switch (action) {
                     case 'publish':
-                        publishRelease(id);
-                        showNotification('Релиз опубликован!', 'success');
+                        publishWithConfirm(id, title);
                         break;
                     case 'delete':
-                        deleteRelease(id);
-                        showNotification('Релиз удалён', 'success');
+                        deleteWithConfirm(id, title);
                         break;
                     case 'restore':
                         restoreRelease(id);
-                        showNotification('Релиз восстановлен', 'success');
+                        showNotification(`Релиз "${title}" восстановлен`, 'success');
+                        renderReleases();
                         break;
                 }
-                renderReleases();
             });
         });
     }
@@ -677,28 +699,18 @@ function initMyMusicPage() {
         `;
     }
 
-    // ПЕРВАЯ ОТРИСОВКА
     renderReleases();
     
-    // СЛУШАЕМ ОБНОВЛЕНИЯ
     window.addEventListener('releasesUpdated', () => {
-        console.log('🔄 Обновление данных!');
         renderReleases();
     });
-    
-    console.log('✅ MY_MUSIC готов к работе');
 }
 
 // ==================== ЗАПУСК ====================
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('=== 🚀 DOM ЗАГРУЖЕН ===');
-    
     const isNewRealize = !!document.getElementById('releaseForm');
     const isMyMusic = !!document.getElementById('releasesContainer');
-    
-    console.log('📄 NEWREALIZE:', isNewRealize);
-    console.log('📄 MY_MUSIC:', isMyMusic);
     
     if (isNewRealize) {
         initNewReleasePage();
@@ -708,23 +720,3 @@ document.addEventListener('DOMContentLoaded', () => {
         initMyMusicPage();
     }
 });
-
-// ==================== ДИАГНОСТИКА ====================
-
-function debugLocalStorage() {
-    console.group('🔍 ДИАГНОСТИКА');
-    const data = getAllReleases();
-    console.log('Всего релизов:', data.length);
-    console.table(data.map(r => ({
-        id: r.id,
-        title: r.title,
-        status: r.status,
-        tracks: r.tracks?.length || 0,
-        created: r.createdAt
-    })));
-    console.groupEnd();
-    return data;
-}
-
-console.log('✅ RELEASES.js v1.4 загружен');
-console.log('💡 Вызовите debugLocalStorage() для проверки');

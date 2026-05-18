@@ -1,0 +1,191 @@
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 800px) {
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .contact-card {
+            background: var(--BACKGROUND);
+            border: var(--BORDER_GRAY);
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        
+        .contact-card:hover {
+            border-color: var(--ACCENT);
+            transform: translateY(-4px);
+        }
+        
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+            filter: invert(1);
+            transition: filter 0.2s;
+        }
+        
+        .contact-card:hover .social-icon {
+            filter: invert(0) brightness(0) sepia(1) hue-rotate(80deg) saturate(10);
+        }
+        
+        .contact-title {
+            font-family: "BOUNDED", monospace;
+            font-size: 1.4rem;
+            color: var(--ACCENT);
+            margin: 10px 0;
+        }
+        
+        .contact-link {
+            font-family: "CONSOLAS", monospace;
+            color: var(--TEXTWHITE);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--GRAY);
+            transition: color 0.2s;
+        }
+        
+        .contact-link:hover {
+            color: var(--ACCENT);
+            border-bottom-color: var(--ACCENT);
+        }
+        
+        .faq-section {
+            width: 100%;
+        }
+        
+        .faq-item {
+            background: var(--BACKGROUND);
+            border: var(--BORDER_GRAY);
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        
+        .faq-question {
+            padding: 18px 22px;
+            font-family: "BOUNDED", monospace;
+            font-size: 1.1rem;
+            color: var(--TEXTWHITE);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.2s;
+        }
+        
+        .faq-question:hover {
+            background: rgba(43, 255, 0, 0.05);
+            color: var(--ACCENT);
+        }
+        
+        .faq-question .arrow {
+            font-size: 1.3rem;
+            transition: transform 0.2s;
+            color: var(--GRAY);
+        }
+        
+        .faq-item.active .faq-question .arrow {
+            transform: rotate(90deg);
+            color: var(--ACCENT);
+        }
+        
+        .faq-answer {
+            font-family: "CONSOLAS", monospace;
+            color: var(--GRAY);
+            padding: 0 22px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s;
+            line-height: 1.5;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 22px 20px 22px;
+            max-height: 300px;
+        }
+        .ticket-form {
+            background: var(--BACKGROUND);
+            border: var(--BORDER_GRAY);
+            padding: 25px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+        
+        .form-row {
+            margin-bottom: 20px;
+        }
+        
+        .form-row label {
+            font-family: "CONSOLAS";
+            color: var(--TEXTWHITE);
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .form-row input,
+        .form-row textarea,
+        .form-row select {
+            width: 100%;
+            background: transparent;
+            border: var(--BORDER_GRAY);
+            padding: 12px;
+            font-family: "CONSOLAS";
+            color: var(--TEXTWHITE);
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        
+        .form-row input:focus,
+        .form-row textarea:focus,
+        .form-row select:focus {
+            border-color: var(--ACCENT);
+            outline: none;
+        }
+        
+        .form-row textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-support {
+            background: none;
+            border: var(--BORDER_GREEN);
+            padding: 12px 30px;
+            font-family: "BOUNDED";
+            font-size: 1rem;
+            color: var(--TEXTWHITE);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .submit-support:hover {
+            background: var(--ACCENT);
+            color: var(--ULTRABLACK);
+        }
+        
+        .alert-message {
+            margin-top: 15px;
+            font-family: "CONSOLAS";
+            font-size: 0.85rem;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: var(--ACCENT);
+            color: var(--ULTRABLACK);
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            margin-left: 10px;
+            font-family: "CONSOLAS";
+            vertical-align: middle;
+        }

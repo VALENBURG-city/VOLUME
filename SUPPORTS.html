@@ -1,31 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ПОДДЕРЖКА</title>
-
     <link rel="stylesheet" href="/INTERSTYLEZZ/STANDARTS.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/HEADER.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/FOOTER.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/FONTS.css">
+    <link rel="stylesheet" href="/INTERSTYLEZZ/CAPDOWNL.css">
+    <link rel="stylesheet" href="STYLEZZ/suppoSTYLE.css">
 </head>
 <body>
     
     <header>
-
         <section class="TOPpartHEADER">
             <a class="logotype" href="STARTPAD.html">
-                <img class="LOGO" src="/MEDIA/forHEADER/LOGO ver 1.png"> 
+                <img class="LOGO" src="/MEDIA/forHEADER/LOGO ver 1.png" alt="logo"> 
             </a>
-
             <div class="left">
-                <img class="AVATAR" src="/MEDIA/forHEADER/soviet olymp bear boxing.jpg">
-                <img class="settings" src="/MEDIA/forHEADER/settings.png">
+                <img class="AVATAR" src="/MEDIA/forHEADER/soviet olymp bear boxing.jpg" alt="avatar">
+                <img class="settings" src="/MEDIA/forHEADER/settings.png" alt="settings">
             </div>
         </section>
         <section class="LEFTpartHEADER">
-       
             <nav class="BUTTONS">
                 <ul>
                     <li><a href="NEWREALIZE.html" class="NAVBUTT">НОВЫЙ РЕЛИЗ</a></li>
@@ -34,12 +32,134 @@
                     <li><a href="SUPPORTS.html" class="NAVBUTT active">ПОДДЕРЖКА</a></li>
                 </ul>
             </nav>
-            
         </section>
-
     </header>
 
-    <div class="ALT_GLOBALSPATIUM"></div>
+    <button class="scroll" id="SCROLLTOP">
+        <img src="MEDIA/ON PAGES/arrow-up.svg" class="arr" alt="up">
+    </button>
 
+    <main class="ALT_GLOBALSPATIUM">
+        
+        <h1 class="TITLE green">ТЕХНИЧЕСКАЯ ПОДДЕРЖКА</h1>
+        <p class="subTITLE" style="margin-top: -10px; color: var(--GRAY);">мы всегда на связи, чтобы помочь вам</p>
+
+        <!-- Блок контактов и соцсетей -->
+        <div class="support-grid">
+            <!-- Социальная сеть / официальный канал -->
+            <div class="contact-card">
+                <img class="social-icon" src="MEDIA/ON PAGES/telegram-icon.svg" alt="telegram" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg'; this.onerror=null;">
+                <div class="contact-title">TELEGRAM</div>
+                <p style="font-family: 'CONSOLAS'; color: var(--GRAY);">Оперативная помощь, новости дистрибуции</p>
+                <a href="https://t.me/music_distributor_support" class="contact-link" target="_blank">@music_distributor_support</a>
+                <div class="status-badge" style="background: var(--ACCENT); margin-top: 12px; display: inline-block;">ОНЛАЙН 24/7</div>
+            </div>
+            
+            <!-- Доп. контакт: почта -->
+            <div class="contact-card">
+                <img class="social-icon" src="MEDIA/ON PAGES/mail-icon.svg" alt="email" onerror="this.src='https://cdn-icons-png.flaticon.com/512/732/732200.png'; this.onerror=null;">
+                <div class="contact-title">E-MAIL</div>
+                <p style="font-family: 'CONSOLAS'; color: var(--GRAY);">Для официальных запросов и документов</p>
+                <a href="mailto:support@distributor.com" class="contact-link">support@distributor.com</a>
+                <p style="margin-top: 12px; font-size: 0.7rem; color: var(--GRAY);">Ответ в течение 24 часов</p>
+            </div>
+        </div>
+
+        <!-- Блок FAQ (часто задаваемые вопросы) -->
+        <div class="faq-section">
+            <h2 class="TITLE" style="font-size: 1.6rem; margin: 20px 0 15px 0;">ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Как долго обрабатывается релиз после загрузки?</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Обычно модерация занимает от 3 до 7 рабочих дней. После проверки релиз автоматически отправляется на все выбранные площадки. Время появления на конкретных стримингах зависит от их внутренних правил (Spotify – до 5 дней, Apple Music – до 3 дней).
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Как я получу выплаты за прослушивания?</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Выплаты начисляются ежемесячно после отчётного периода (обычно до 15 числа). Вы можете запросить вывод средств на банковскую карту или PayPal в разделе «Аналитика» → «Монетизация». Минимальная сумма для вывода — 50 USD.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Можно ли удалить релиз после публикации?</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Да, вы можете отправить запрос на удаление через страницу «Моя музыка». Удаление с площадок может занять до 30 дней. Помните, что удалённые треки больше не приносят дохода.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Какие требования к обложке релиза?</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    Обложка должна быть квадратной, минимум 3000×3000 пикселей, форматы JPG или PNG. Запрещено использовать логотипы соцсетей, брендов, водяные знаки, откровенный контент. Нарушение правил может привести к отклонению релиза.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Как изменить исполнителя или название уже выпущенного трека?</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="faq-answer">
+                    После публикации изменить метаданные невозможно без повторной отправки. Вы можете создать новый релиз с корректными данными, а старый — удалить. Для массовых правок свяжитесь с поддержкой.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Форма обращения в поддержку (имитация отправки) -->
+        <div class="ticket-form">
+            <h2 class="TITLE" style="font-size: 1.4rem; margin: 0 0 20px 0;">НЕ НАШЛИ ОТВЕТ? НАПИШИТЕ НАМ</h2>
+            <form id="supportForm">
+                <div class="form-row">
+                    <label>Ваше имя</label>
+                    <input type="text" id="userName" placeholder="Иван Иванов" required>
+                </div>
+                <div class="form-row">
+                    <label>Email (для ответа)</label>
+                    <input type="email" id="userEmail" placeholder="ivan@example.com" required>
+                </div>
+                <div class="form-row">
+                    <label>Тема обращения</label>
+                    <select id="supportTopic">
+                        <option value="general">Общий вопрос</option>
+                        <option value="payment">Выплаты и монетизация</option>
+                        <option value="release">Проблемы с релизом</option>
+                        <option value="technical">Техническая ошибка</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label>Сообщение</label>
+                    <textarea id="userMessage" placeholder="Опишите вашу проблему подробно..."></textarea>
+                </div>
+                <button type="submit" class="submit-support">ОТПРАВИТЬ СООБЩЕНИЕ</button>
+                <div id="formSupportMessage" class="alert-message"></div>
+            </form>
+        </div>
+        
+        <div style="margin-top: 30px; border-top: var(--BORDER_GRAY); padding-top: 20px; text-align: center;">
+            <p class="textgray">Служба поддержки работает с понедельника по пятницу с 10:00 до 19:00 (МСК). <br>В экстренных случаях пишите в Telegram — операторы онлайн круглосуточно.</p>
+        </div>
+    </main>
+
+
+
+    <script src="SCRIPTORES/SCROLLBUTT.js"></script>
+    <script src="SCRIPTORES/SUPPORTS.js"></script>
+    <!-- Можем также подключить общие стили уведомлений, но они уже есть -->
 </body>
 </html>
+`

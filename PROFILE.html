@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ПРОФИЛЬ</title>
+    <link rel="stylesheet" href="/INTERSTYLEZZ/STANDARTS.css">
+    <link rel="stylesheet" href="/INTERSTYLEZZ/HEADER.css">
+    <link rel="stylesheet" href="/INTERSTYLEZZ/FOOTER.css">
+    <link rel="stylesheet" href="/INTERSTYLEZZ/FONTS.css">
+    <link rel="stylesheet" href="/INTERSTYLEZZ/CAPDOWNL.css">
+    <link rel="stylesheet" href="STYLEZZ/profSTYLE.css">
+</head>
+<body>
+    
+    <header>
+        <section class="TOPpartHEADER">
+            <a class="logotype" href="STARTPAD.html">
+                <img class="LOGO" src="/MEDIA/forHEADER/LOGO ver 1.png" alt="logo"> 
+            </a>
+            <div class="left">
+                <img class="AVATAR"  alt="avatar">
+                <img class="settings" src="/MEDIA/forHEADER/settings.png" alt="settings">
+            </div>
+        </section>
+        <section class="LEFTpartHEADER">
+            <nav class="BUTTONS">
+                <ul>
+                    <li><a href="PROFILE.html" class="NAVBUTT active">ПРОФИЛЬ</a></li>
+                    <li><a href="NEWREALIZE.html" class="NAVBUTT">НОВЫЙ РЕЛИЗ</a></li>
+                    <li><a href="MY_MUSIC.html" class="NAVBUTT">МОЯ МУЗЫКА</a></li>
+                    <li><a href="ANALYTICS.html" class="NAVBUTT">АНАЛИТИКА</a></li>
+                    <li><a href="SUPPORTS.html" class="NAVBUTT">ПОДДЕРЖКА</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+    <button class="scroll" id="SCROLLTOP">
+        <img src="MEDIA/ON PAGES/arrow-up.svg" class="arr" alt="up">
+    </button>
+
+    <main class="ALT_GLOBALSPATIUM">
+        <h1 class="TITLE green">ПРОФИЛЬ АРТИСТА</h1>
+        <p class="subTITLE" style="margin-top: -10px; color: var(--GRAY);">управление личными данными</p>
+
+        <div class="profile-container">
+            <!-- Левая колонка: аватар, основная информация -->
+            <div class="profile-sidebar">
+                <img id="profileAvatar" class="avatar-large"  alt="avatar">
+                <div class="profile-name" id="displayName">Артист</div>
+                <div class="profile-email" id="displayEmail">artist@example.com</div>
+                <div class="stat-label" style="margin-top: 20px;">Уровень аккаунта: PRO</div>
+                <div class="stat-label">Дата регистрации: 12.03.2025</div>
+            </div>
+
+            <!-- Правая колонка: редактирование и опасная зона -->
+            <div class="profile-main">
+                <!-- Форма редактирования профиля -->
+                <div class="edit-form">
+                    <h2 class="TITLE" style="font-size: 1.3rem; margin-bottom: 20px;">✎ РЕДАКТИРОВАТЬ ПРОФИЛЬ</h2>
+                    <div class="form-group">
+                        <label>Имя / Псевдоним</label>
+                        <input type="text" id="editName" placeholder="Ваш псевдоним">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="editEmail" placeholder="example@domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Аватар</label>
+                        <label for="avatarInput" class="file-label">ВЫБРАТЬ ФАЙЛ (PNG/JPG)</label>
+                        <input type="file" id="avatarInput" accept="image/png, image/jpeg, image/jpg">
+                        <img id="avatarPreview" class="avatar-preview" style="display: none;">
+                    </div>
+                    <div>
+                        <button class="btn-save" id="saveProfileBtn">СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
+                        <span id="profileMessage" class="message-toast"></span>
+                    </div>
+                </div>
+
+                <!-- Опасная зона (удаление аккаунта, выход) -->
+                <div class="danger-zone">
+                    <p style="font-family: 'CONSOLAS'; color: var(--GRAY); font-size: 0.85rem;">Действия необратимы или изменяют сессию</p>
+                    <button class="btn-danger" id="logoutBtn">ВЫЙТИ ИЗ АККАУНТА</button>
+                    <button class="btn-danger" id="deleteAccountBtn">УДАЛИТЬ АККАУНТ НАВСЕГДА</button>
+                    <div id="dangerMessage" class="message-toast" style="margin-top: 10px;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="SCRIPTORES/SCROLLBUTT.js"></script>
+    <script src="SCRIPTORES/PROFILE.js"></script>
+
+</body>
+</html>
+`

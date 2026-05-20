@@ -364,13 +364,11 @@ body{
 }
 
 
-/* Анимация при достижении 100% */
 .progress-bar-fill.complete {
     background: var(--ACCENT);
 }
 
 
-/* Для страниц без прогресс-бара - скрываем */
 body.no-progress .progress-bar-container {
     display: none;
 }

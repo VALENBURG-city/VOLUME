@@ -100,3 +100,17 @@
         background: none;
         color: var(--TEXTWHITE);
     }
+
+
+.VIDEOBACK {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;  
+    z-index: -1;  
+    filter: brightness(0.5);      
+}

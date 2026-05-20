@@ -1,5 +1,4 @@
 
-        // Генерация графика прослушиваний (барчарт)
         function initChart() {
             const container = document.getElementById('dailyChart');
             if (!container) return;

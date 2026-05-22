@@ -2,14 +2,14 @@
         function initChart() {
             const container = document.getElementById('dailyChart');
             if (!container) return;
-            // Данные за 7 дней
+            
             const dailyData = [12450, 18230, 21340, 19870, 25400, 31200, 29800];
             const days = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'];
             const maxVal = Math.max(...dailyData);
             
             container.innerHTML = '';
             dailyData.forEach((value, idx) => {
-                const barHeight = (value / maxVal) * 200; // max 200px
+                const barHeight = (value / maxVal) * 200; 
                 const barDiv = document.createElement('div');
                 barDiv.className = 'bar-item';
                 barDiv.innerHTML = 
@@ -21,7 +21,7 @@
             });
         }
 
-        // Эмуляция переключения периода (только для вида - меняем текст в карточках)
+        
         const periodBtns = document.querySelectorAll('.period-btn');
         const statValues = document.querySelectorAll('.stat-value');
         const topTableBody = document.querySelector('.stats-table tbody');
@@ -29,13 +29,13 @@
         const progressFills = document.querySelectorAll('.progress-fill');
         
         function updateDemoData(period) {
-            // Простая симуляция изменения данных для "вида"
+            
                 if (period === 'НЕДЕЛЯ') {
                 if (statValues[0]) statValues[0].innerText = '184 293';
                 if (statValues[1]) statValues[1].innerText = '12 847';
                 if (statValues[2]) statValues[2].innerText = '$ 1 428';
                 if (statValues[3]) statValues[3].innerText = '7';
-                // обновим таблицу топ треков
+                
                 if (topTableBody) {
                     topTableBody.innerHTML = 
                         <tr><td>Сумерки в Петербурге</td><td>42 891</td><td>$334</td></tr>;
@@ -56,10 +56,10 @@
                         progressFills[5].style.width = '2%';
                     }
                 }
-                // Баланс
+                
                 const balanceDiv = document.querySelector('.balance');
                 if(balanceDiv) balanceDiv.innerText = '$ 1 428.30';
-                // Изменяем гео-проценты тоже для динамики
+                
                 const geoBadges = document.querySelectorAll('.geo-badge');
                 if(geoBadges.length) {
                     geoBadges[0].innerHTML = '🇷🇺 Россия · 63%';
@@ -143,16 +143,16 @@
             });
         });
         
-        // запускаем график и базовые данные
+        
         initChart();
         
-        // Также подправим таблицу эффективности релизов и доход от площадок, чтоб немного адаптировать под периоды (но оставим статичной для простоты)
-        // Дополнительно: при клике на кнопку выплаты показываем уведомление (используем существующую систему нотификаций)
+        
+        
         const withdrawBtn = document.querySelector('.money-block .BUTTON_INTERNATIONAL');
         if (withdrawBtn) {
             withdrawBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                // Эмулируем уведомление
+                
                 let notif = document.getElementById('notification');
                 if (!notif) {
                     notif = document.createElement('div');
@@ -168,4 +168,4 @@
             });
         }
 
-        // Для страницы скролл уже есть
+        

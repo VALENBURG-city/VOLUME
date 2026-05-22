@@ -57,16 +57,16 @@ function SWITCHhref() {
     
     if (user) {
         authLink.textContent = 'Личный кабинет';
-        authLink.href = 'PROFILE.html'; // изменить на новую страницу
+        authLink.href = 'PROFILE.html'; 
     } else {
         authLink.textContent = 'Авторизация';
-        authLink.href = 'AUTHORIZATION.html'; // изменить на новую страницу
+        authLink.href = 'AUTHORIZATION.html'; 
     }
 }
 
 function logout() {
     localStorage.removeItem('semantic_current_user');
-    NotificationManager.show('Вы вышли из системы', 'success'); // настроить чтоб работало
+    NotificationManager.show('Вы вышли из системы', 'success'); 
     SWITCHhref();
     
     setTimeout(() => {
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 createdAt: Date.now(), 
             });
             
-            NotificationManager.show('Регистрация успешна! Добро пожаловать!', 'success'); // настроить
+            NotificationManager.show('Регистрация успешна! Добро пожаловать!', 'success'); 
             SWITCHhref();
             
             setTimeout(() => {

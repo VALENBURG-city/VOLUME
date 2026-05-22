@@ -18,6 +18,17 @@ body{
 }
 
 
+@font-face {
+    font-family: "BOUNDED";
+    src: url(BOUNDED-VARIABLE.TTF);
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "CONSOLAS";
+    src: url(CONSOLA.TTF);
+}
+
 .GLOBALSPATIUM{
     position: relative;
     display: flex;
@@ -139,7 +150,48 @@ body{
     }
 
 
-/* УВЕДОМЛЕНИЯ */
+.BACKBUTTON{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    top:60px;
+    left: 60px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--BACKGROUNDCOLORALLPAGE);
+    border: var(--BORDER_GREEN);
+    color: var(--TEXTWHITE);
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    font-size: 900;
+    transition: all 0.1s ease-in-out;
+    z-index: 1000;
+}
+
+        .BACKBUTTON:hover {
+            background-color: var(--ACCENT);
+            transform: scale(1.2);
+            color: var(--ACCENT);
+            border-color: var(--BORDER_GREEN);
+        }
+
+            .ARRBACK{
+                width: 80%;
+                filter: invert(1);
+                transition: 0.3s ease;
+                transform: rotate(-90deg);
+            }
+
+        .BACKBUTTON:hover .ARRBACK{
+            filter: invert(0);
+        }
+
+
+        
 .notification {
     display: none;
     position: fixed;

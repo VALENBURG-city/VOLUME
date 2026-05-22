@@ -1,4 +1,4 @@
-        /* Дополнительные стили для страницы аналитики */
+        
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

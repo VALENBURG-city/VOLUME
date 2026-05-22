@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/INTERSTYLEZZ/STANDARTS.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/HEADER.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/FOOTER.css">
-    <link rel="stylesheet" href="/INTERSTYLEZZ/FONTS.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/CAPDOWNL.css">
     <link rel="stylesheet" href="STYLEZZ/analytSTYLE.css">
 </head>
@@ -43,8 +42,7 @@
 
     <main class="ALT_GLOBALSPATIUM">
         
-        <!-- Заголовок страницы -->
-        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap;">
+        
             <h1 class="TITLE green" style="margin: 0;">АНАЛИТИКА</h1>
             <div class="period-switch">
                 <button class="period-btn active">НЕДЕЛЯ</button>
@@ -52,9 +50,8 @@
                 <button class="period-btn">ГОД</button>
             </div>
         </div>
-        <p class="subTITLE" style="margin-top: -10px; color: var(--GRAY);">актуальные данные на 18 мая 2026</p>
 
-        <!-- Карточки метрик -->
+        
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-label">ОБЩИЕ ПРОСЛУШИВАНИЯ</div>
@@ -78,18 +75,18 @@
             </div>
         </div>
 
-        <!-- График прослушиваний (имитация) -->
+        
         <div class="chart-container">
             <div class="chart-title">▸ ДИНАМИКА ПРОСЛУШИВАНИЙ (ПО ДНЯМ)</div>
             <div class="bar-chart" id="dailyChart">
-                <!-- Динамически стилизовано через JS, но можно и статично, чтобы выглядело живо -->
+                
             </div>
             <div class="insight-text">* данные агрегированы по всем площадкам, UTC+3</div>
         </div>
 
-        <!-- Две колонки: лучшие треки + распределение по площадкам -->
+        
         <div class="two-columns">
-            <!-- ТОП треков -->
+            
             <div class="chart-container" style="margin-bottom: 0;">
                 <div class="chart-title">▸ ЛУЧШИЕ ТРЕКИ (ПО ПРОСЛУШИВАНИЯМ)</div>
                 <table class="stats-table">
@@ -106,7 +103,7 @@
                 </table>
             </div>
             
-            <!-- Распределение по площадкам -->
+            
             <div class="chart-container" style="margin-bottom: 0;">
                 <div class="chart-title">▸ ПРОСЛУШИВАНИЯ ПО ПЛОЩАДКАМ</div>
                 <div class="platform-list">
@@ -145,9 +142,9 @@
             </div>
         </div>
 
-        <!-- Блок монетизации и география -->
+        
         <div class="two-columns">
-            <!-- Монетизация / выплаты -->
+            
             <div class="chart-container">
                 <div class="chart-title">▸ МОНЕТИЗАЦИЯ И ВЫПЛАТЫ</div>
                 <div class="money-block">
@@ -170,7 +167,7 @@
                 </div>
             </div>
 
-            <!-- География слушателей -->
+            
             <div class="chart-container">
                 <div class="chart-title">▸ ГЕОГРАФИЯ СЛУШАТЕЛЕЙ (ТОП-5)</div>
                 <div>
@@ -191,7 +188,7 @@
             </div>
         </div>
 
-        <!-- Доп. блок - сводка по релизам -->
+        
         <div class="chart-container">
             <div class="chart-title">▸ ЭФФЕКТИВНОСТЬ РЕЛИЗОВ (за 30 дней)</div>
             <table class="stats-table">
@@ -211,12 +208,12 @@
 
     </main>
 
-    <!-- Скрипт для генерации графика (имитация живой статистики) -->
+    
 
     <script src="SCRIPTORES/PROFILE.js"></script>
     <script src="SCRIPTORES/SCROLLBUTT.js"></script>
     <script src="SCRIPTORES/ANALYTICSGEN.js"></script>
-    <!-- дополнительно подключать CAPDOWNL не требуется -->
+    
 </body>
 </html>
 `

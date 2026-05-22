@@ -46,7 +46,7 @@
         }
 
         100%{
-            transform: translateX(-17.89%); /* выставить значение точнее, изменить в будущем*/
+            transform: translateX(-17.89%); 
         }
 
     }
@@ -59,7 +59,7 @@
     font-family: "BOUNDED";
     color: var(--TEXTWHITE);
     font-size: 2rem;
-    margin-top: 10vh;
+    margin-top: 14vh;
 }
 
     .BENtext{

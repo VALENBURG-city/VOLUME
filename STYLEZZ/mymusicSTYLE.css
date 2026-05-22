@@ -1,11 +1,11 @@
-/* ПАНЕЛЬ ФИЛЬТРАЦИИ */
+
 .PANEL{
     display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
 
-/* ОСНОВНОЕ ПРОСТРАНСТВО */
+
 .SPACE{
     display: flex;
     justify-content: flex-start;
@@ -15,7 +15,7 @@
 }
 
 
-/* КНОПКИ ФИЛЬТРА */
+
 .filter-btn {
     background: transparent;
     cursor: pointer;
@@ -31,7 +31,7 @@
     color: var(--ACCENT);
 }
 
-/* ПОЛЕ ПОИСКА */
+
 #searchContainer {
     display: flex;
     justify-content: flex-start;
@@ -60,7 +60,7 @@
     width: 35px;
 }
 
-/* КОНТЕЙНЕР РЕЛИЗОВ */
+
 #releasesContainer {
     display: flex;
     flex-direction: column;
@@ -68,7 +68,7 @@
     width: 100%;
 }
 
-/* ПУСТОЕ СОСТОЯНИЕ */
+
 .empty-state {
     display: flex;
     flex-direction: column;
@@ -97,7 +97,7 @@
     text-decoration: underline;
 }
 
-/* КАРТОЧКА РЕЛИЗА */
+
 .release-card {
     display: flex;
     align-items: center;

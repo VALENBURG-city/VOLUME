@@ -87,7 +87,7 @@
     flex-direction: column;
 }
 
-    /* Контейнер превью обложки в «Обзоре» */
+    
     #previewCoverContainer {
         display: flex;
         align-items: center;
@@ -126,7 +126,7 @@
         box-sizing: border-box;
     }
 
-/* ПОЛЯ ВВОДА В СТИЛЕ САЙТА */
+
 .inputREAL {
     background: transparent;
     padding: 0 15px;
@@ -146,7 +146,7 @@
     border-color: var(--ACCENT);
 }
 
-/* SELECT В СТИЛЕ САЙТА */
+
 .selectREAL {
     background: var(--BACKGROUNDCOLORALLPAGE);
     color: var(--TEXTWHITE);
@@ -175,7 +175,7 @@
     border-color: var(--ACCENT);
 }
 
-/* ЗОНА ЗАГРУЗКИ */
+
 #coverDropZone {
     cursor: pointer;
     transition: border-color 0.2s ease;

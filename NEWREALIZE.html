@@ -13,31 +13,32 @@
 <body>
     
     <header>
-
         <section class="TOPpartHEADER">
-            <a class="logotype" href="STARTPAD.html">
+            <a class="logotype">
                 <img class="LOGO" src="/MEDIA/forHEADER/LOGO ver 1.png"> 
             </a>
 
             <div class="left">
-                <img class="AVATAR" >
-                <img class="settings" src="/MEDIA/forHEADER/settings.png">
+                <button class="burger-toggle" id="burgerToggle" aria-label="Меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <img class="AVATAR">
             </div>
         </section>
-        <section class="LEFTpartHEADER">
-       
+
+        <section class="LEFTpartHEADER" id="mainMenu">
             <nav class="BUTTONS">
                 <ul>
                     <li><a href="PROFILE.html" class="NAVBUTT">ПРОФИЛЬ</a></li>
-                    <li><a href="NEWREALIZE.html" class="NAVBUTT active">НОВЫЙ РЕЛИЗ</a></li>
+                    <li><a href="NEWREALIZE.html" class="NAVBUTT ActiveH">НОВЫЙ РЕЛИЗ</a></li>
                     <li><a href="MY_MUSIC.html" class="NAVBUTT">МОЯ МУЗЫКА</a></li>
                     <li><a href="ANALYTICS.html" class="NAVBUTT">АНАЛИТИКА</a></li>
                     <li><a href="SUPPORTS.html" class="NAVBUTT">ПОДДЕРЖКА</a></li>
                 </ul>
             </nav>
-            
         </section>
-
     </header>
 
     <button class="scroll" id="SCROLLTOP">
@@ -212,18 +213,8 @@
 
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js"></script>
-    <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
     
 
-    
-    <!-- <model-viewer 
-        src="MEDIA/MODELS3D/CASETTE.glb" 
-        alt="3D модель"
-        auto-rotate
-        rotation-per-second="400deg"
-        style="width: 30%; height: 30vh;">
-    </model-viewer>  -->
 
     <div class="NOTcontainer">
         <div class="notification" id="notification"></div>
@@ -232,11 +223,13 @@
     
 
 
-
+    
+    <script src="SCRIPTORES/PROGRESSBAR.js"></script>
     <script src="SCRIPTORES/PROFILE.js"></script>
     <script src="SCRIPTORES/RELEASES.js"></script>
     <script src="SCRIPTORES/SCROLLBUTT.js"></script>
-    <script src="SCRIPTORES/PROGRESSBAR.js"></script>
+    <script src="SCRIPTORES/PRELOADER.js"></script>
+    <script src="SCRIPTORES/BURG.js"></script>
 
 </body>
 </html>

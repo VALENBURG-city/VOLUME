@@ -14,18 +14,24 @@
     
     <header>
         <section class="TOPpartHEADER">
-            <a class="logotype" href="STARTPAD.html">
-                <img class="LOGO" src="/MEDIA/forHEADER/LOGO ver 1.png" alt="logo"> 
+            <a class="logotype">
+                <img class="LOGO" src="/MEDIA/forHEADER/LOGO ver 1.png"> 
             </a>
+
             <div class="left">
-                <img class="AVATAR"  alt="avatar">
-                <img class="settings" src="/MEDIA/forHEADER/settings.png" alt="settings">
+                <button class="burger-toggle" id="burgerToggle" aria-label="Меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <img class="AVATAR">
             </div>
         </section>
-        <section class="LEFTpartHEADER">
+
+        <section class="LEFTpartHEADER" id="mainMenu">
             <nav class="BUTTONS">
                 <ul>
-                    <li><a href="PROFILE.html" class="NAVBUTT active">ПРОФИЛЬ</a></li>
+                    <li><a href="PROFILE.html" class="NAVBUTT ActiveH">ПРОФИЛЬ</a></li>
                     <li><a href="NEWREALIZE.html" class="NAVBUTT">НОВЫЙ РЕЛИЗ</a></li>
                     <li><a href="MY_MUSIC.html" class="NAVBUTT">МОЯ МУЗЫКА</a></li>
                     <li><a href="ANALYTICS.html" class="NAVBUTT">АНАЛИТИКА</a></li>
@@ -77,13 +83,6 @@
                     </div>
                 </div>
 
-                
-                <div class="danger-zone">
-                    <p style="font-family: 'CONSOLAS'; color: var(--GRAY); font-size: 0.85rem;">Действия необратимы или изменяют сессию</p>
-                    <button class="btn-danger" id="logoutBtn">ВЫЙТИ ИЗ АККАУНТА</button>
-                    <button class="btn-danger" id="deleteAccountBtn">УДАЛИТЬ АККАУНТ НАВСЕГДА</button>
-                    <div id="dangerMessage" class="message-toast" style="margin-top: 10px;"></div>
-                </div>
             </div>
         </div>
     </main>
@@ -91,6 +90,9 @@
 
     <script src="SCRIPTORES/SCROLLBUTT.js"></script>
     <script src="SCRIPTORES/PROFILE.js"></script>
+    <script src="SCRIPTORES/PRELOADER.js"></script>
+    <script src="SCRIPTORES/BURG.js"></script>
+
 
 </body>
 </html>

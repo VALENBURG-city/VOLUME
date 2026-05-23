@@ -230,3 +230,354 @@
     color: var(--TEXTBLACK);
 }
 
+
+
+
+
+
+@media (max-width: 1200px) {
+    .PANEL {
+        justify-content: space-between;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .filter-btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .release-card-title {
+        font-size: 1.2rem;
+    }
+
+    .release-card-artist {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .PANEL {
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .filter-btn {
+        font-size: 0.85rem;
+        padding: 6px 14px;
+    }
+
+    #searchContainer {
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    #searchInput {
+        font-size: 0.9rem;
+    }
+
+    .searchIIMG {
+        width: 30px;
+    }
+
+    .release-card {
+        padding: 15px;
+        gap: 18px;
+    }
+
+    .release-card-cover {
+        width: 75px;
+        height: 75px;
+    }
+
+    .release-card-title {
+        font-size: 1.1rem;
+    }
+
+    .release-card-meta {
+        gap: 15px;
+    }
+
+    .release-card-meta span {
+        font-size: 0.75rem;
+    }
+
+    .release-card-status {
+        font-size: 1rem;
+        padding: 3px 10px;
+    }
+
+    .release-card-actions button {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .PANEL {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .SPACE {
+        gap: 2vh;
+    }
+
+    .filter-btn {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    #searchContainer {
+        padding: 0;
+        gap: 15px;
+    }
+
+    #searchInput {
+        font-size: 0.85rem;
+        flex: 1;
+    }
+
+    .searchIIMG {
+        width: 28px;
+    }
+
+    #releasesContainer {
+        gap: 15px;
+    }
+
+    .release-card {
+        flex-wrap: wrap;
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .release-card-cover {
+        width: 65px;
+        height: 65px;
+    }
+
+    .release-card-info {
+        flex: 1;
+        min-width: 150px;
+    }
+
+    .release-card-title {
+        font-size: 1rem;
+    }
+
+    .release-card-artist {
+        font-size: 0.85rem;
+    }
+
+    .release-card-meta {
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 3px;
+    }
+
+    .release-card-meta span {
+        font-size: 0.7rem;
+    }
+
+    .release-card-status {
+        font-size: 0.9rem;
+        padding: 2px 8px;
+        align-self: flex-start;
+    }
+
+    .release-card-actions {
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .release-card-actions button {
+        font-size: 0.85rem;
+        padding: 4px 10px;
+    }
+
+    .empty-state {
+        height: 40vh;
+        gap: 15px;
+    }
+
+    .empty-state .text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .filter-btn {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    #searchContainer {
+        gap: 12px;
+    }
+
+    #searchInput {
+        font-size: 0.8rem;
+    }
+
+    .searchIIMG {
+        width: 24px;
+    }
+
+    .release-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .release-card-cover {
+        width: 80px;
+        height: 80px;
+    }
+
+    .release-card-info {
+        width: 100%;
+    }
+
+    .release-card-title {
+        font-size: 0.95rem;
+    }
+
+    .release-card-artist {
+        font-size: 0.8rem;
+    }
+
+    .release-card-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .release-card-meta span {
+        font-size: 0.65rem;
+    }
+
+    .release-card-status {
+        font-size: 0.8rem;
+        padding: 2px 8px;
+    }
+
+    .release-card-actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .release-card-actions button {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+
+    .empty-state {
+        height: 35vh;
+    }
+
+    .empty-state .text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .PANEL {
+        gap: 15px;
+    }
+
+    .filter-btn {
+        font-size: 0.7rem;
+        padding: 6px;
+    }
+
+    #searchContainer {
+        gap: 10px;
+    }
+
+    #searchInput {
+        font-size: 0.75rem;
+    }
+
+    .searchIIMG {
+        width: 22px;
+    }
+
+    .release-card-cover {
+        width: 70px;
+        height: 70px;
+    }
+
+    .release-card-title {
+        font-size: 0.9rem;
+    }
+
+    .release-card-artist {
+        font-size: 0.75rem;
+    }
+
+    .release-card-status {
+        font-size: 0.7rem;
+    }
+
+    .release-card-actions button {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+    }
+
+    .empty-state .text {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .filter-btn {
+        font-size: 0.65rem;
+        padding: 5px;
+    }
+
+    #searchInput {
+        font-size: 0.7rem;
+    }
+
+    .searchIIMG {
+        width: 20px;
+    }
+
+    .release-card-cover {
+        width: 60px;
+        height: 60px;
+    }
+
+    .release-card-title {
+        font-size: 0.85rem;
+    }
+
+    .release-card-artist {
+        font-size: 0.7rem;
+    }
+
+    .release-card-meta span {
+        font-size: 0.6rem;
+    }
+
+    .release-card-status {
+        font-size: 0.65rem;
+        padding: 1px 6px;
+    }
+
+    .release-card-actions button {
+        font-size: 0.65rem;
+        padding: 2px 5px;
+    }
+
+    .empty-state .text {
+        font-size: 0.75rem;
+    }
+}

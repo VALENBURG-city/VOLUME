@@ -195,21 +195,24 @@ body{
 .notification {
     display: none;
     position: fixed;
-    top: 0;
-    right: 41vw;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: var(--BACKGROUND);
     border: var(--BORDER_GREEN);
     padding: 15px 25px;
     color: var(--TEXTWHITE);
     font-family: "BOUNDED";
-    transform: translateX(400px);
-    transition: transform 1s ease-out;
+    text-align: center;
+    white-space: nowrap;
     z-index: 9999;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .notification.show {
     display: flex;
-    transform: translateX(0);
+    align-items: center;
+    justify-content: center;
 }
 
 .notification.success {
@@ -423,4 +426,379 @@ body{
 
 body.no-progress .progress-bar-container {
     display: none;
+}
+
+
+
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--BACKGROUNDCOLORALLPAGE);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader-line {
+    width: 300px;
+    height: 2px;
+    background-color: var(--GRAY);
+    overflow: hidden;
+}
+
+.preloader-line-fill {
+    width: 0%;
+    height: 100%;
+    background-color: var(--ACCENT);
+}
+
+
+
+
+
+
+
+
+@media (max-width: 1200px) {
+    .GLOBALSPATIUM {
+        padding-left: 5vw;
+        padding-right: 5vw;
+        gap: 8vh;
+    }
+
+    .ALT_GLOBALSPATIUM {
+        width: 85vw;
+        padding: 3% 4%;
+    }
+
+    .TITLE {
+        font-size: 2rem;
+    }
+
+    .TITLEinFORM {
+        font-size: 1.2rem;
+    }
+
+    .subTITLE {
+        font-size: 1.2rem;
+    }
+
+    .cut {
+        width: 450px;
+    }
+}
+
+@media (max-width: 992px) {
+    .GLOBALSPATIUM {
+        padding-left: 4vw;
+        padding-right: 4vw;
+        gap: 6vh;
+    }
+
+    .ALT_GLOBALSPATIUM {
+        width: 90vw;
+        top: 12vh;
+    }
+
+    .TITLE {
+        font-size: 1.8rem;
+    }
+
+    .quad {
+        width: 350px;
+        height: 350px;
+    }
+
+    .cut {
+        width: 400px;
+    }
+
+    .BACKBUTTON {
+        top: 30px;
+        left: 30px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .scroll.visible {
+        transform: translateX(-20px);
+    }
+
+    .scroll:hover {
+        transform: scale(1.1) translateX(-20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .GLOBALSPATIUM {
+        padding-left: 3vw;
+        padding-right: 3vw;
+        gap: 5vh;
+        margin-top: 3vh;
+        padding-bottom: 10vh;
+    }
+
+    .ALT_GLOBALSPATIUM {
+        width: 94vw;
+        padding: 4% 3%;
+        top: 10vh;
+        gap: 4vh;
+    }
+
+    .TITLE {
+        font-size: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .TITLEinFORM {
+        font-size: 1rem;
+        margin-left: 0;
+    }
+
+    .subTITLE {
+        font-size: 1rem;
+    }
+
+    .FILEPOLE {
+        height: 40vh;
+    }
+
+    .quad {
+        width: 280px;
+        height: 280px;
+    }
+
+    .FORMPOLE {
+        height: 45px;
+    }
+
+    .cut {
+        width: 100%;
+        max-width: 350px;
+        flex-direction: column;
+        height: auto;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .BUTTON_INTERNATIONAL {
+        width: 200px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .BACKBUTTON {
+        top: 20px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .scroll.visible {
+        transform: translateX(-15px);
+    }
+
+    .scroll:hover {
+        transform: scale(1.1) translateX(-15px);
+    }
+
+    .notification {
+        padding: 12px 20px;
+        white-space: normal;
+        text-align: center;
+        width: 80%;
+        top: 70px;
+    }
+
+    .modal-container {
+        width: 95%;
+        max-width: 400px;
+    }
+
+    .modal-header {
+        padding: 15px 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .modal-footer {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+
+    .modal-btn {
+        padding: 8px 20px;
+        font-size: 1rem;
+    }
+
+    .preloader-line {
+        width: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .GLOBALSPATIUM {
+        padding-left: 2vw;
+        padding-right: 2vw;
+        gap: 4vh;
+    }
+
+    .ALT_GLOBALSPATIUM {
+        width: 96vw;
+        padding: 5% 2%;
+        top: 8vh;
+        gap: 3vh;
+    }
+
+    .TITLE {
+        font-size: 1.2rem;
+    }
+
+    .TITLEinFORM {
+        font-size: 0.9rem;
+    }
+
+    .subTITLE {
+        font-size: 0.9rem;
+    }
+
+    .FILEPOLE {
+        height: 35vh;
+    }
+
+    .quad {
+        width: 220px;
+        height: 220px;
+    }
+
+    .FORMPOLE {
+        font-size: 0.85rem;
+    }
+
+    .cut {
+        max-width: 280px;
+    }
+
+    .BUTTON_INTERNATIONAL {
+        width: 180px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
+
+    .BACKBUTTON {
+        top: 15px;
+        left: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .scroll.visible {
+        transform: translateX(-10px);
+        width: 50px;
+        height: 50px;
+    }
+
+    .scroll:hover {
+        transform: scale(1.1) translateX(-10px);
+    }
+
+    .notification {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+        width: 90%;
+        top: 60px;
+    }
+
+    .modal-container {
+        max-width: 350px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .modal-content p {
+        font-size: 0.85rem;
+    }
+
+    .modal-content .warning-text {
+        font-size: 0.85rem;
+    }
+
+    .modal-btn {
+        padding: 6px 16px;
+        font-size: 0.9rem;
+    }
+
+    .preloader-line {
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .TITLE {
+        font-size: 1rem;
+    }
+
+    .quad {
+        width: 180px;
+        height: 180px;
+    }
+
+    .FILEPOLE {
+        height: 30vh;
+    }
+
+    .cut {
+        max-width: 240px;
+    }
+
+    .BUTTON_INTERNATIONAL {
+        width: 160px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+
+    .BACKBUTTON {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .TITLE {
+        font-size: 0.9rem;
+    }
+
+    .quad {
+        width: 150px;
+        height: 150px;
+    }
+
+    .BUTTON_INTERNATIONAL {
+        width: 140px;
+        height: 32px;
+        font-size: 0.75rem;
+    }
+
+    .modal-container {
+        max-width: 300px;
+    }
 }

@@ -1,15 +1,7 @@
-// ============================================
-// RELEASE MANAGER v1.4 — ЧИСТАЯ ВЕРСИЯ
-// CRUD для релизов + NEWREALIZE + MY_MUSIC
-// Хранение: Local Storage
-// ============================================
-
-// ==================== КОНСТАНТЫ ====================
 const STORAGE_KEY = 'releases';
 
-// ==================== УТИЛИТЫ ====================
-
 function escapeHTML(str) {
+    if (!str) return '';
     const div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
@@ -46,14 +38,13 @@ function showNotification(msg, type) {
     setTimeout(() => { notif.className = 'notification'; }, 4000);
 }
 
-// ==================== LOCAL STORAGE API ====================
-
 function getAllReleases() {
     try {
         const data = localStorage.getItem(STORAGE_KEY);
         const releases = data ? JSON.parse(data) : [];
         return Array.isArray(releases) ? releases : [];
     } catch (e) {
+        console.error('getAllReleases error:', e);
         return [];
     }
 }
@@ -62,7 +53,12 @@ function saveAllReleases(releases) {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(releases));
         window.dispatchEvent(new CustomEvent('releasesUpdated'));
-    } catch (e) {}
+    } catch (e) {
+        if (e.name === 'QuotaExceededError') {
+            showNotification('Превышен лимит хранилища. Удалите старые релизы.', 'error');
+        }
+        console.error('saveAllReleases error:', e);
+    }
 }
 
 function createRelease(releaseData) {
@@ -88,6 +84,7 @@ function createRelease(releaseData) {
     
     releases.push(newRelease);
     saveAllReleases(releases);
+    console.log('Created release:', newRelease);
     return newRelease;
 }
 
@@ -107,6 +104,7 @@ function deleteRelease(id) {
     releases[index].status = 'deleted';
     releases[index].deletedAt = new Date().toISOString();
     saveAllReleases(releases);
+    console.log('Deleted release:', id);
     return releases[index];
 }
 
@@ -117,6 +115,7 @@ function restoreRelease(id) {
     releases[index].status = 'draft';
     delete releases[index].deletedAt;
     saveAllReleases(releases);
+    console.log('Restored release:', id);
     return releases[index];
 }
 
@@ -127,13 +126,19 @@ function publishRelease(id) {
     releases[index].status = 'released';
     releases[index].releasedAt = new Date().toISOString();
     saveAllReleases(releases);
+    console.log('Published release:', id);
     return releases[index];
 }
 
 function getReleasesByStatus(status) {
     const releases = getAllReleases();
+    console.log('All releases:', releases);
+    console.log('Filter by status:', status);
+    
     if (status === 'all') return releases;
-    return releases.filter(r => r.status === status);
+    const filtered = releases.filter(r => r.status === status);
+    console.log('Filtered releases:', filtered);
+    return filtered;
 }
 
 function searchReleases(query) {
@@ -147,8 +152,6 @@ function getReleaseById(id) {
     const releases = getAllReleases();
     return releases.find(r => r.id === id) || null;
 }
-
-// ==================== МОДАЛЬНОЕ ОКНО ====================
 
 class DeleteConfirmModal {
     constructor() {
@@ -237,9 +240,9 @@ class DeleteConfirmModal {
 
 let deleteModal = null;
 
-// ==================== СТРАНИЦА NEWREALIZE ====================
-
 function initNewReleasePage() {
+    console.log('initNewReleasePage started');
+    
     const titleInput       = document.getElementById('releaseTitle');
     const languageSelect   = document.getElementById('releaseLanguage');
     const genreSelect      = document.getElementById('releaseGenre');
@@ -274,6 +277,12 @@ function initNewReleasePage() {
             showNotification('Неверный формат. Допустимы: PNG, JPG, JPEG', 'error');
             return;
         }
+        
+        if (file.size > 5 * 1024 * 1024) {
+            showNotification('Размер обложки не должен превышать 5MB', 'error');
+            return;
+        }
+        
         coverBase64 = await fileToBase64(file);
         
         coverPreview.src = coverBase64;
@@ -304,8 +313,8 @@ function initNewReleasePage() {
 
     function switchDateMode(mode) {
         releaseDateMode = mode;
-        const pointImmediate = dateImmediate.querySelector('.point');
-        const pointCustom    = dateCustom.querySelector('.point');
+        const pointImmediate = dateImmediate ? dateImmediate.querySelector('.point') : null;
+        const pointCustom = dateCustom ? dateCustom.querySelector('.point') : null;
         
         if (mode === 'immediate') {
             if (pointImmediate) pointImmediate.classList.add('activee');
@@ -355,30 +364,43 @@ function initNewReleasePage() {
                     data-track-remove="${trackIndex}">✕</button>
         `;
 
-        trackRow.querySelector('[data-track-field="name"]').addEventListener('input', (e) => {
-            tracks[trackIndex].name = e.target.value;
-            updatePreview();
-        });
+        const nameInput = trackRow.querySelector('[data-track-field="name"]');
+        if (nameInput) {
+            nameInput.addEventListener('input', (e) => {
+                tracks[trackIndex].name = e.target.value;
+                updatePreview();
+            });
+        }
 
         const fileZone = trackRow.querySelector('[data-track-field="file"]');
         const fileInput = trackRow.querySelector('input[type="file"]');
-        fileZone.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                tracks[trackIndex].file = await fileToBase64(file);
-                const p = fileZone.querySelector('p');
-                if (p) {
-                    p.textContent = 'Загружено';
-                    p.style.color = 'var(--ACCENT)';
+        
+        if (fileZone && fileInput) {
+            fileZone.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    if (file.size > 50 * 1024 * 1024) {
+                        showNotification('Размер аудиофайла не должен превышать 50MB', 'error');
+                        return;
+                    }
+                    tracks[trackIndex].file = await fileToBase64(file);
+                    const p = fileZone.querySelector('p');
+                    if (p) {
+                        p.textContent = 'Загружено';
+                        p.style.color = 'var(--ACCENT)';
+                    }
+                    updatePreview();
                 }
-                updatePreview();
-            }
-        });
+            });
+        }
 
-        trackRow.querySelector('[data-track-remove]').addEventListener('click', () => {
-            removeTrack(trackIndex);
-        });
+        const removeBtn = trackRow.querySelector('[data-track-remove]');
+        if (removeBtn) {
+            removeBtn.addEventListener('click', () => {
+                removeTrack(trackIndex);
+            });
+        }
 
         tracklistContainer.appendChild(trackRow);
         updatePreview();
@@ -402,8 +424,12 @@ function initNewReleasePage() {
         const previewArtist = document.getElementById('previewArtist');
         const previewTracklist = document.getElementById('previewTracklist');
         
-        if (previewTitle) previewTitle.textContent = titleInput ? titleInput.value || 'Введите название' : 'Введите название';
-        if (previewArtist) previewArtist.textContent = artistInput ? artistInput.value || 'Исполнитель' : 'Исполнитель';
+        if (previewTitle) {
+            previewTitle.textContent = titleInput ? titleInput.value || 'Введите название' : 'Введите название';
+        }
+        if (previewArtist) {
+            previewArtist.textContent = artistInput ? artistInput.value || 'Исполнитель' : 'Исполнитель';
+        }
         
         if (!coverBase64) {
             const previewIMG = document.getElementById('previewCoverIMG');
@@ -494,6 +520,9 @@ function initNewReleasePage() {
         if (!formMessage) return;
         formMessage.textContent = msg;
         formMessage.style.color = type === 'success' ? 'var(--ACCENT)' : 'red';
+        setTimeout(() => {
+            if (formMessage) formMessage.textContent = '';
+        }, 3000);
     }
 
     function resetForm() {
@@ -530,11 +559,12 @@ function initNewReleasePage() {
     }
 
     addTrack();
+    console.log('initNewReleasePage finished');
 }
 
-// ==================== СТРАНИЦА MY_MUSIC ====================
-
 function initMyMusicPage() {
+    console.log('initMyMusicPage started');
+    
     if (!deleteModal) {
         deleteModal = new DeleteConfirmModal();
     }
@@ -544,18 +574,26 @@ function initMyMusicPage() {
     const searchInput = document.getElementById('searchInput');
     const filterBtns = document.querySelectorAll('.filter-btn');
 
+    console.log('releasesContainer:', releasesContainer);
+    console.log('filterBtns:', filterBtns.length);
+
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentFilter = btn.dataset.filter;
+            console.log('Filter changed to:', currentFilter);
             renderReleases();
         });
     });
 
     if (searchInput) {
+        let searchTimeout;
         searchInput.addEventListener('input', () => {
-            renderReleases();
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                renderReleases();
+            }, 300);
         });
     }
 
@@ -583,7 +621,12 @@ function initMyMusicPage() {
             releases = getReleasesByStatus(currentFilter);
         }
 
-        if (!releasesContainer) return;
+        console.log('Rendering releases, count:', releases.length);
+
+        if (!releasesContainer) {
+            console.error('releasesContainer not found!');
+            return;
+        }
 
         if (releases.length === 0) {
             showEmptyState(query, currentFilter);
@@ -652,15 +695,21 @@ function initMyMusicPage() {
     }
 
     function attachCardListeners() {
-        document.querySelectorAll('[data-action]').forEach(btn => {
-            const newBtn = btn.cloneNode(true);
-            btn.parentNode.replaceChild(newBtn, btn);
+        const actionButtons = document.querySelectorAll('[data-action]');
+        console.log('Found action buttons:', actionButtons.length);
+        
+        actionButtons.forEach(btn => {
+            btn.removeEventListener('click', btn._listener);
             
-            newBtn.addEventListener('click', (e) => {
+            const handler = (e) => {
                 e.stopPropagation();
-                const action = newBtn.dataset.action;
-                const id = newBtn.dataset.id;
-                const title = newBtn.dataset.title || 'Релиз';
+                e.preventDefault();
+                
+                const action = btn.dataset.action;
+                const id = btn.dataset.id;
+                const title = btn.dataset.title || 'Релиз';
+                
+                console.log('Button clicked:', action, id, title);
                 
                 switch (action) {
                     case 'publish':
@@ -675,7 +724,10 @@ function initMyMusicPage() {
                         renderReleases();
                         break;
                 }
-            });
+            };
+            
+            btn._listener = handler;
+            btn.addEventListener('click', handler);
         });
     }
 
@@ -702,15 +754,21 @@ function initMyMusicPage() {
     renderReleases();
     
     window.addEventListener('releasesUpdated', () => {
+        console.log('releasesUpdated event received');
         renderReleases();
     });
+    
+    console.log('initMyMusicPage finished');
 }
 
-// ==================== ЗАПУСК ====================
-
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded fired');
+    
     const isNewRealize = !!document.getElementById('releaseForm');
     const isMyMusic = !!document.getElementById('releasesContainer');
+    
+    console.log('isNewRealize:', isNewRealize);
+    console.log('isMyMusic:', isMyMusic);
     
     if (isNewRealize) {
         initNewReleasePage();

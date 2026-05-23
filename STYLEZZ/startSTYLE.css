@@ -114,3 +114,299 @@
     z-index: -1;  
     filter: brightness(0.5);      
 }
+
+
+
+
+
+@media (max-width: 1200px) {
+    .TAPE {
+        height: 18vh;
+        margin-top: 8vh;
+    }
+
+    .texttpe {
+        font-size: 1.8rem;
+    }
+
+    .W {
+        font-size: 1.8rem;
+    }
+
+    .BENEFITS {
+        font-size: 1.8rem;
+        margin-top: 12vh;
+    }
+
+    .GOBUTTONS {
+        height: 9vh;
+        margin-top: 18vh;
+        gap: 8%;
+    }
+
+    .GOTObutt {
+        font-size: 1.8rem;
+        width: 25%;
+    }
+}
+
+@media (max-width: 992px) {
+    .TAPE {
+        height: 16vh;
+        margin-top: 7vh;
+    }
+
+    .inscriptions {
+        gap: 4%;
+        animation-duration: 2.5s;
+    }
+
+    .texttpe {
+        font-size: 1.5rem;
+    }
+
+    .W {
+        font-size: 1.5rem;
+        transform: scaleY(4) scaleX(1.2);
+    }
+
+    @keyframes FLOWTAPE {
+        100% {
+            transform: translateX(-20%);
+        }
+    }
+
+    .BENEFITS {
+        font-size: 1.5rem;
+        margin-top: 10vh;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+    }
+
+    .BENtext {
+        width: 45%;
+        text-align: center;
+    }
+
+    .GOBUTTONS {
+        height: 8vh;
+        margin-top: 15vh;
+        gap: 6%;
+    }
+
+    .GOTObutt {
+        font-size: 1.5rem;
+        width: 28%;
+    }
+}
+
+@media (max-width: 768px) {
+    .TAPE {
+        height: 14vh;
+        margin-top: 6vh;
+    }
+
+    .inscriptions {
+        gap: 5%;
+        left: 2%;
+        animation-duration: 3s;
+    }
+
+    .TEXTTAPE {
+        white-space: nowrap;
+    }
+
+    .texttpe {
+        font-size: 1.2rem;
+        transform: scaleX(1.2);
+    }
+
+    .W {
+        font-size: 1.2rem;
+        transform: scaleY(3.5) scaleX(1.15);
+        margin-bottom: 12%;
+    }
+
+    @keyframes FLOWTAPE {
+        100% {
+            transform: translateX(-25%);
+        }
+    }
+
+    .BENEFITS {
+        font-size: 1.2rem;
+        margin-top: 8vh;
+        gap: 25px;
+    }
+
+    .BENtext {
+        width: 100%;
+        text-align: center;
+        padding: 0 15px;
+    }
+
+    .GOBUTTONS {
+        flex-direction: column;
+        height: auto;
+        margin-top: 12vh;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .GOTObutt {
+        font-size: 1.3rem;
+        width: 60%;
+        padding: 15px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .TAPE {
+        height: 12vh;
+        margin-top: 5vh;
+    }
+
+    .inscriptions {
+        gap: 6%;
+        left: 1%;
+        animation-duration: 3.5s;
+    }
+
+    .texttpe {
+        font-size: 0.9rem;
+        transform: scaleX(1.1);
+    }
+
+    .W {
+        font-size: 0.9rem;
+        transform: scaleY(3) scaleX(1.1);
+        margin-bottom: 10%;
+    }
+
+    @keyframes FLOWTAPE {
+        100% {
+            transform: translateX(-30%);
+        }
+    }
+
+    .BENEFITS {
+        font-size: 1rem;
+        margin-top: 6vh;
+        gap: 20px;
+    }
+
+    .BENtext {
+        width: 100%;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .GOBUTTONS {
+        margin-top: 10vh;
+        gap: 15px;
+    }
+
+    .GOTObutt {
+        font-size: 1.1rem;
+        width: 70%;
+        padding: 12px 0;
+    }
+
+    .VIDEOBACK {
+        object-fit: cover;
+        filter: brightness(0.4);
+    }
+}
+
+@media (max-width: 480px) {
+    .TAPE {
+        height: 10vh;
+        margin-top: 4vh;
+    }
+
+    .inscriptions {
+        gap: 8%;
+        animation-duration: 4s;
+    }
+
+    .texttpe {
+        font-size: 0.7rem;
+        transform: scaleX(1);
+    }
+
+    .W {
+        font-size: 0.7rem;
+        transform: scaleY(2.5) scaleX(1);
+        margin-bottom: 8%;
+    }
+
+    @keyframes FLOWTAPE {
+        100% {
+            transform: translateX(-35%);
+        }
+    }
+
+    .BENEFITS {
+        font-size: 0.9rem;
+        margin-top: 5vh;
+        gap: 15px;
+    }
+
+    .BENtext {
+        font-size: 0.8rem;
+    }
+
+    .GOBUTTONS {
+        margin-top: 8vh;
+        gap: 12px;
+    }
+
+    .GOTObutt {
+        font-size: 1rem;
+        width: 80%;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .TAPE {
+        height: 9vh;
+        margin-top: 3vh;
+    }
+
+    .inscriptions {
+        gap: 10%;
+        animation-duration: 4.5s;
+    }
+
+    .texttpe {
+        font-size: 0.6rem;
+    }
+
+    .W {
+        font-size: 0.6rem;
+        transform: scaleY(2) scaleX(1);
+    }
+
+    @keyframes FLOWTAPE {
+        100% {
+            transform: translateX(-40%);
+        }
+    }
+
+    .BENEFITS {
+        font-size: 0.8rem;
+        margin-top: 4vh;
+    }
+
+    .BENtext {
+        font-size: 0.7rem;
+    }
+
+    .GOTObutt {
+        font-size: 0.9rem;
+        width: 85%;
+        padding: 8px 0;
+    }
+}

@@ -168,277 +168,32 @@ header{
 }
 
 
-
-
-
-@media (max-width: 1200px) {
-    .TOPpartHEADER {
-        padding: 0% 4%;
-        height: 14vh;
-    }
-
-    .LOGO {
-        width: 400px;
-    }
-
-    .left {
-        width: 12%;
-    }
-
-    .AVATAR {
-        width: 70px;
-        height: 70px;
-    }
-
-    .settings {
-        width: 35px;
-        height: 35px;
-    }
-
-    .LEFTpartHEADER {
-        width: 25vw;
-        height: 65vh;
-        top: 14vh;
-    }
-
-    .NAVBUTT {
-        font-size: 0.9rem;
-        padding: 4%;
-    }
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-@media (max-width: 992px) {
-    .TOPpartHEADER {
-        padding: 0% 5%;
-        height: 13vh;
-    }
-
-    .LOGO {
-        width: 350px;
-    }
-
-    .left {
-        width: 15%;
-    }
-
-    .AVATAR {
-        width: 60px;
-        height: 60px;
-    }
-
-    .settings {
-        width: 30px;
-        height: 30px;
-    }
-
-    .LEFTpartHEADER {
-        width: 30vw;
-        height: 60vh;
-        top: 13vh;
-    }
-
-    .NAVBUTT {
-        font-size: 0.85rem;
-        padding: 5%;
-    }
+.BUTTONS ul,
+.BUTTONS li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-@media (max-width: 768px) {
-    header {
-        position: relative;
-    }
-
-    .TOPpartHEADER {
-        padding: 0% 4%;
-        height: 12vh;
-    }
-
-    .LOGO {
-        width: 250px;
-    }
-
-    .left {
-        width: 20%;
-        gap: 15px;
-    }
-
-    .AVATAR {
-        width: 50px;
-        height: 50px;
-    }
-
-    .settings {
-        width: 28px;
-        height: 28px;
-    }
-
-    .LEFTpartHEADER {
-        position: fixed;
-        top: 12vh;
-        right: -100%;
-        width: 60vw;
-        height: calc(100vh - 12vh);
-        border-left: var(--BORDER_GRAY);
-        border-bottom: none;
-        transition: right 0.3s ease;
-        z-index: 998;
-        padding: 5%;
-    }
-
-    .LEFTpartHEADER.active {
-        right: 0;
-    }
-
-    .BUTTONS {
-        justify-content: flex-start;
-    }
-
-    ul {
-        gap: 15px;
-    }
-
-    .NAVBUTT {
-        font-size: 1rem;
-        padding: 12px;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .menu-toggle {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        gap: 6px;
-    }
-
-    .menu-toggle span {
-        width: 30px;
-        height: 3px;
-        background-color: var(--TEXTWHITE);
-        transition: 0.3s ease;
-    }
-
-    .menu-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
-    }
-
-    .menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .menu-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-    }
+.LEFTpartHEADER ul,
+.LEFTpartHEADER li,
+nav ul,
+nav li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-@media (max-width: 576px) {
-    .TOPpartHEADER {
-        padding: 0% 5%;
-        height: 11vh;
-    }
-
-    .LOGO {
-        width: 180px;
-    }
-
-    .left {
-        width: 25%;
-        gap: 10px;
-    }
-
-    .AVATAR {
-        width: 40px;
-        height: 40px;
-    }
-
-    .settings {
-        width: 24px;
-        height: 24px;
-    }
-
-    .LEFTpartHEADER {
-        width: 75vw;
-        top: 11vh;
-        height: calc(100vh - 11vh);
-    }
-
-    .NAVBUTT {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
-
-    .menu-toggle {
-        width: 35px;
-        height: 35px;
-        gap: 5px;
-    }
-
-    .menu-toggle span {
-        width: 25px;
-        height: 2.5px;
-    }
+*::marker {
+    display: none;
+    content: '';
 }
 
-@media (max-width: 480px) {
-    .TOPpartHEADER {
-        height: 10vh;
-    }
 
-    .LOGO {
-        width: 150px;
-    }
 
-    .left {
-        width: 30%;
-        gap: 8px;
-    }
-
-    .AVATAR {
-        width: 35px;
-        height: 35px;
-    }
-
-    .settings {
-        width: 22px;
-        height: 22px;
-    }
-
-    .LEFTpartHEADER {
-        width: 85vw;
-        top: 10vh;
-    }
-
-    .NAVBUTT {
-        font-size: 0.85rem;
-        padding: 8px;
-    }
-}
-
-@media (max-width: 360px) {
-    .LOGO {
-        width: 120px;
-    }
-
-    .left {
-        width: 35%;
-    }
-
-    .AVATAR {
-        width: 30px;
-        height: 30px;
-    }
-
-    .settings {
-        width: 20px;
-        height: 20px;
-    }
-
-    .NAVBUTT {
-        font-size: 0.8rem;
-        padding: 8px;
-    }
-}

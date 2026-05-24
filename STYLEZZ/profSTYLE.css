@@ -124,32 +124,46 @@
         }
         
         .danger-zone {
+            display: flex;
+            justify-content: center;
             background: var(--BACKGROUND);
-            border: 1px solid #ff4444;
+            border: var(--BORDER_GRAY);
             padding: 20px;
             margin-top: 20px;
         }
         
         .danger-title {
             font-family: "BOUNDED";
-            color: #ff4444;
+            color: red;
             margin-bottom: 15px;
             font-size: 1.2rem;
         }
         
         .btn-danger {
             background: none;
-            border: 1px solid #ff4444;
+            border: var(--BORDER_GRAY);
             padding: 8px 20px;
             font-family: "CONSOLAS";
-            color: #ff4444;
+            color: var(--GRAY);
             cursor: pointer;
             transition: 0.2s;
             margin-right: 15px;
         }
+
+            .btn-danger.leave{
+                border: var(--BORDER_GRAY);
+                color: var(--GRAY);
+            }
+
+                .btn-danger.leave:hover{
+                    background: var(--BACKGROUND);
+                    border-color: var(--ACCENT);
+                    color: var(--TEXTWHITE);
+                }
         
         .btn-danger:hover {
-            background: #ff4444;
+            border-color: red;
+            background: red;
             color: var(--ULTRABLACK);
         }
         
@@ -160,330 +174,9 @@
         }
 
 
-
-
-
-@media (max-width: 992px) {
-    .profile-container {
-        gap: 30px;
-    }
-
-    .profile-sidebar {
-        min-width: 220px;
-        padding: 20px 15px;
-    }
-
-    .profile-main {
-        min-width: 280px;
-    }
-
-    .avatar-large {
-        width: 120px;
-        height: 120px;
-    }
-
-    .profile-name {
-        font-size: 1.5rem;
-    }
-
-    .profile-email {
-        font-size: 0.8rem;
-    }
-
-    .edit-form {
-        padding: 20px;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    .form-group label {
-        font-size: 0.9rem;
-    }
-
-    .form-group input,
-    .form-group .file-label {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-
-    .btn-save {
-        padding: 8px 20px;
-        font-size: 0.9rem;
-    }
-
-    .danger-zone {
-        padding: 15px;
-    }
-
-    .danger-title {
-        font-size: 1rem;
-    }
-
-    .btn-danger {
-        padding: 6px 15px;
-        font-size: 0.85rem;
-    }
+model-viewer {
+    position: absolute;
+    bottom: 20px;
+    left: 78px;
 }
 
-@media (max-width: 768px) {
-    .profile-container {
-        flex-direction: column;
-        gap: 25px;
-    }
-
-    .profile-sidebar {
-        min-width: 100%;
-        padding: 25px 20px;
-    }
-
-    .profile-main {
-        min-width: 100%;
-    }
-
-    .avatar-large {
-        width: 100px;
-        height: 100px;
-    }
-
-    .profile-name {
-        font-size: 1.3rem;
-    }
-
-    .profile-email {
-        font-size: 0.75rem;
-        margin-bottom: 20px;
-    }
-
-    .edit-form {
-        padding: 18px;
-        margin-bottom: 20px;
-    }
-
-    .form-group {
-        margin-bottom: 12px;
-    }
-
-    .form-group label {
-        font-size: 0.85rem;
-        margin-bottom: 6px;
-    }
-
-    .form-group input,
-    .form-group .file-label {
-        padding: 8px;
-        font-size: 0.85rem;
-    }
-
-    .avatar-preview {
-        width: 60px;
-        height: 60px;
-    }
-
-    .btn-save {
-        padding: 7px 18px;
-        font-size: 0.85rem;
-        margin-right: 10px;
-    }
-
-    .danger-zone {
-        padding: 15px;
-        margin-top: 15px;
-    }
-
-    .danger-title {
-        font-size: 0.95rem;
-        margin-bottom: 12px;
-    }
-
-    .btn-danger {
-        padding: 5px 12px;
-        font-size: 0.8rem;
-        margin-right: 10px;
-    }
-
-    .message-toast {
-        font-size: 0.8rem;
-        margin-top: 12px;
-    }
-}
-
-@media (max-width: 576px) {
-    .profile-container {
-        gap: 20px;
-    }
-
-    .profile-sidebar {
-        padding: 20px 15px;
-    }
-
-    .avatar-large {
-        width: 85px;
-        height: 85px;
-        border-width: 2px;
-    }
-
-    .profile-name {
-        font-size: 1.2rem;
-        margin: 8px 0 3px;
-    }
-
-    .profile-email {
-        font-size: 0.7rem;
-        margin-bottom: 15px;
-    }
-
-    .edit-form {
-        padding: 15px;
-    }
-
-    .form-group {
-        margin-bottom: 12px;
-    }
-
-    .form-group label {
-        font-size: 0.8rem;
-    }
-
-    .form-group input,
-    .form-group .file-label {
-        padding: 7px;
-        font-size: 0.8rem;
-    }
-
-    .avatar-preview {
-        width: 55px;
-        height: 55px;
-    }
-
-    .btn-save {
-        padding: 6px 15px;
-        font-size: 0.8rem;
-        margin-right: 8px;
-    }
-
-    .danger-zone {
-        padding: 12px;
-    }
-
-    .danger-title {
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-    }
-
-    .btn-danger {
-        padding: 4px 10px;
-        font-size: 0.75rem;
-        margin-right: 8px;
-    }
-
-    .message-toast {
-        font-size: 0.75rem;
-        margin-top: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-sidebar {
-        padding: 15px 12px;
-    }
-
-    .avatar-large {
-        width: 70px;
-        height: 70px;
-    }
-
-    .profile-name {
-        font-size: 1rem;
-    }
-
-    .profile-email {
-        font-size: 0.65rem;
-    }
-
-    .edit-form {
-        padding: 12px;
-    }
-
-    .form-group label {
-        font-size: 0.75rem;
-    }
-
-    .form-group input,
-    .form-group .file-label {
-        padding: 6px;
-        font-size: 0.75rem;
-    }
-
-    .avatar-preview {
-        width: 50px;
-        height: 50px;
-    }
-
-    .btn-save {
-        padding: 5px 12px;
-        font-size: 0.75rem;
-        margin-right: 5px;
-    }
-
-    .danger-title {
-        font-size: 0.85rem;
-    }
-
-    .btn-danger {
-        padding: 3px 8px;
-        font-size: 0.7rem;
-    }
-
-    .message-toast {
-        font-size: 0.7rem;
-    }
-}
-
-@media (max-width: 360px) {
-    .profile-sidebar {
-        padding: 12px 10px;
-    }
-
-    .avatar-large {
-        width: 60px;
-        height: 60px;
-    }
-
-    .profile-name {
-        font-size: 0.9rem;
-    }
-
-    .profile-email {
-        font-size: 0.6rem;
-    }
-
-    .edit-form {
-        padding: 10px;
-    }
-
-    .form-group label {
-        font-size: 0.7rem;
-    }
-
-    .form-group input,
-    .form-group .file-label {
-        padding: 5px;
-        font-size: 0.7rem;
-    }
-
-    .btn-save {
-        padding: 4px 10px;
-        font-size: 0.7rem;
-    }
-
-    .danger-title {
-        font-size: 0.8rem;
-    }
-
-    .btn-danger {
-        padding: 3px 6px;
-        font-size: 0.65rem;
-    }
-}

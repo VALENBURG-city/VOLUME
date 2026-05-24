@@ -6,8 +6,6 @@
     <title>ПРОФИЛЬ</title>
     <link rel="stylesheet" href="/INTERSTYLEZZ/STANDARTS.css">
     <link rel="stylesheet" href="/INTERSTYLEZZ/HEADER.css">
-    <link rel="stylesheet" href="/INTERSTYLEZZ/FOOTER.css">
-    <link rel="stylesheet" href="/INTERSTYLEZZ/CAPDOWNL.css">
     <link rel="stylesheet" href="STYLEZZ/profSTYLE.css">
 </head>
 <body>
@@ -51,11 +49,9 @@
         <div class="profile-container">
             
             <div class="profile-sidebar">
-                <img id="profileAvatar" class="avatar-large"  alt="avatar">
+                <img id="profileAvatar" class="avatar-large" alt="avatar">
                 <div class="profile-name" id="displayName">Артист</div>
                 <div class="profile-email" id="displayEmail">artist@example.com</div>
-                <div class="stat-label" style="margin-top: 20px;">Уровень аккаунта: PRO</div>
-                <div class="stat-label">Дата регистрации: 12.03.2025</div>
             </div>
 
             
@@ -83,6 +79,35 @@
                     </div>
                 </div>
 
+                <div class="model-viewer-container">
+                    <div id="cassetteModel" class="cassette-3d-model"></div>
+                </div>
+
+                <div class="danger-zone">
+                    <p style="font-family: CONSOLAS; font-size: 0.8rem; color: var(--GRAY); margin-bottom: 20px;">
+                    </p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <button class="btn-danger leave" id="logoutBtn">ВЫЙТИ ИЗ АККАУНТА</button>
+                        <button class="btn-danger" id="deleteAccountBtn">УДАЛИТЬ АККАУНТ</button>
+                    </div>
+                </div>
+
+
+
+                
+                    <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
+
+                    <model-viewer
+                        src="/MEDIA/MODELS3D/CASETTE.glb"
+                        alt="3D модель"
+                        auto-rotate
+                        disable-zoom
+                        camera-controls
+                        rotation-per-second="100deg"
+                        auto-rotate-delay="0"
+                        style="width: 30%; height: 30%">
+                    </model-viewer>
+
             </div>
         </div>
     </main>
@@ -91,8 +116,7 @@
     <script src="SCRIPTORES/SCROLLBUTT.js"></script>
     <script src="SCRIPTORES/PROFILE.js"></script>
     <script src="SCRIPTORES/PRELOADER.js"></script>
-    <script src="SCRIPTORES/BURG.js"></script>
-
+    <script src="SCRIPTORES/CASETTE.js"></script>
 
 </body>
 </html>

@@ -172,9 +172,11 @@
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const id = parseInt(btn.dataset.id);
-                    deleteReleaseById(id);
-                    renderReleases();
-                    showNotification('Релиз удалён навсегда', 'success');
+                    if (confirm('Удалить релиз навсегда? Это действие нельзя отменить.')) {
+                        deleteReleaseById(id);
+                        renderReleases();
+                        showNotification('Релиз удалён навсегда', 'success');
+                    }
                 });
             });
 
@@ -200,10 +202,11 @@
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const id = parseInt(btn.dataset.id);
-                    
-                    softDeleteRelease(id);
-                    renderReleases();
-                    showNotification('Релиз перемещён в удалённые', 'info');
+                    if (confirm('Переместить релиз в корзину?')) {
+                        softDeleteRelease(id);
+                        renderReleases();
+                        showNotification('Релиз перемещён в удалённые', 'info');
+                    }
                 });
             });
         }
@@ -330,18 +333,18 @@
             });
 
             const trackDiv = document.createElement('div');
-            trackDiv.className = 'track-item oneROWform';
+            trackDiv.className = 'track-item';
             trackDiv.dataset.id = trackId;
             trackDiv.innerHTML = `
-                <input type="text" class="track-name FORMPOLE cut inputREAL" style="width: 50%; height: 47px; cursor: pointer;" placeholder="Название трека" value="${escapeHtml(tracks[trackIndex].name)}">
+                <input type="text" class="track-name FORMPOLE cut inputREAL" style="width: 50%; height: 47px; cursor: pointer; color: var(--GRAY)" placeholder="Название трека" value="${escapeHtml(tracks[trackIndex].name)}">
                 <div class="track-audio-zone" data-track-id="${trackId}">
-                    <div class="audio-upload-btn inputREAL FORMPOLE " style="width: 100%; height: 47px; cursor: pointer; color: var(--GRAY)" >
+                    <div class="audio-upload-btn inputREAL FORMPOLE " style="width: 25%; height: 47px; cursor: pointer; color: var(--GRAY)" >
                         ${tracks[trackIndex].audioFile ? 'ЗАГРУЖЕНО' : 'ЗАГРУЗИТЬ ТРЕК'}
                     </div>
                     <input type="file" class="audio-input" accept="audio/*" style="display: none;">
                     ${tracks[trackIndex].audioName ? `<span class="audio-filename">${escapeHtml(tracks[trackIndex].audioName)}</span>` : ''}
                 </div>
-                <button type="button" style="width: 50px; height: 47px; font-size: 0.8rem; border-color: red; background-color: transparent; color: red; flex-shrink: 0;" class="track-delete-btn ">✕</button>
+                <button type="button" style="width: 50px; height: 50px; font-size: 0.8rem; border-color: red; background-color: transparent; color: red; flex-shrink: 0;" class="track-delete-btn ">✕</button>
             `;
 
             
@@ -367,7 +370,16 @@
                     tracks[trackIndex].audioFile = await fileToBase64(file);
                     tracks[trackIndex].audioName = file.name;
                     audioBtn.textContent = 'АУДИО ЗАГРУЖЕНО';
-
+                    const filenameSpan = trackDiv.querySelector('.audio-filename');
+                    if (!filenameSpan) {
+                        const span = document.createElement('span');
+                        span.className = 'audio-filename';
+                        span.textContent = file.name;
+                        audioZone.appendChild(span);
+                    } else {
+                        filenameSpan.textContent = file.name;
+                    }
+                    showNotification(`Аудио "${file.name}" загружено`, 'success');
                 } else {
                     showNotification('Пожалуйста, загрузите аудиофайл', 'error');
                 }
@@ -442,8 +454,13 @@
                 return;
             }
             
-            
-            
+            const missingAudio = validTracks.filter(t => !t.audioFile);
+            if (missingAudio.length > 0) {
+                if (!confirm(`У следующих треков нет аудиофайлов:\n${missingAudio.map(t => t.name).join('\n')}\n\nПродолжить без аудио?`)) {
+                    return;
+                }
+            }
+
             const releaseData = {
                 id: editReleaseData ? editReleaseData.id : generateId(),
                 upc: editReleaseData ? editReleaseData.upc : generateUPC(),

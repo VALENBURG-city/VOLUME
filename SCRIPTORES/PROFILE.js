@@ -2,8 +2,11 @@
     let currentUser = {
         name: 'Артист',
         email: 'artist@example.com',
-        avatar: '/MEDIA/forHEADER/soviet olymp bear boxing.jpg'
+        avatar: ''
     };
+    
+    let currentModalOverlay = null;
+    let currentModalCloseCallback = null;
     
     function updateHeaderAvatar(avatarUrl) {
         const headerAvatar = document.querySelector('.AVATAR');
@@ -18,7 +21,6 @@
                 }
             });
             observer.observe(document.body, { childList: true, subtree: true });
-            
             setTimeout(() => observer.disconnect(), 3000);
         }
     }
@@ -30,7 +32,7 @@
                 const parsed = JSON.parse(saved);
                 currentUser.name = parsed.name || 'Артист';
                 currentUser.email = parsed.email || 'artist@example.com';
-                currentUser.avatar = parsed.avatar || '/MEDIA/forHEADER/soviet olymp bear boxing.jpg';
+                currentUser.avatar = parsed.avatar || '';
             } catch(e) {}
         }
         
@@ -64,7 +66,7 @@
         }, 3500);
     }
     
-    function showGlobalNotification(msg) {
+    function showGlobalNotification(msg, type = 'info') {
         let notif = document.getElementById('notification');
         if (!notif) {
             notif = document.createElement('div');
@@ -74,9 +76,99 @@
         }
         notif.innerText = msg;
         notif.classList.add('show');
+        if (type === 'success') notif.classList.add('success');
+        if (type === 'error') notif.classList.add('error');
         setTimeout(() => {
             notif.classList.remove('show');
+            notif.classList.remove('success');
+            notif.classList.remove('error');
         }, 3000);
+    }
+    
+    function handleEscapeKey(e) {
+        if (e.key === 'Escape' && currentModalOverlay && currentModalOverlay.classList.contains('activEEE')) {
+            if (currentModalCloseCallback) {
+                currentModalCloseCallback();
+            }
+            closeCurrentModal();
+        }
+    }
+    
+    function closeCurrentModal() {
+        if (!currentModalOverlay) return;
+        
+        document.removeEventListener('keydown', handleEscapeKey);
+        
+        currentModalOverlay.classList.remove('activEEE');
+        setTimeout(() => {
+            if (currentModalOverlay && currentModalOverlay.parentNode) {
+                currentModalOverlay.remove();
+            }
+            currentModalOverlay = null;
+            currentModalCloseCallback = null;
+        }, 300);
+    }
+    
+    function createModal(options) {
+        if (currentModalOverlay) {
+            closeCurrentModal();
+        }
+        
+        const modalOverlay = document.createElement('div');
+        modalOverlay.className = 'modal-overlay';
+        modalOverlay.innerHTML = `
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h2 style="color: ${options.headerColor || 'var(--ACCENT)'};">${options.title}</h2>
+                </div>
+                <div class="modal-content">
+                    ${options.content}
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn modal-btn-cancel" id="modalCancelBtn">${options.cancelText || 'ОТМЕНА'}</button>
+                    <button class="modal-btn modal-btn-confirm" id="modalConfirmBtn" style="${options.confirmStyle || ''}">${options.confirmText || 'ПОДТВЕРДИТЬ'}</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalOverlay);
+        
+        currentModalOverlay = modalOverlay;
+        currentModalCloseCallback = options.onCancel || null;
+        
+        setTimeout(() => modalOverlay.classList.add('activEEE'), 10);
+        
+        document.addEventListener('keydown', handleEscapeKey);
+        
+        const closeModal = () => {
+            if (options.onCancel) options.onCancel();
+            closeCurrentModal();
+        };
+        
+        const cancelBtn = modalOverlay.querySelector('#modalCancelBtn');
+        const confirmBtn = modalOverlay.querySelector('#modalConfirmBtn');
+        
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', () => {
+                if (options.onCancel) options.onCancel();
+                closeCurrentModal();
+            });
+        }
+        
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', () => {
+                if (options.onConfirm) options.onConfirm();
+                closeCurrentModal();
+            });
+        }
+        
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                if (options.onCancel) options.onCancel();
+                closeCurrentModal();
+            }
+        });
+        
+        return { close: closeCurrentModal };
     }
     
     const saveProfileBtn = document.getElementById('saveProfileBtn');
@@ -112,7 +204,7 @@
             if (profileAvatar) profileAvatar.src = currentUser.avatar;
             
             showMessage('profileMessage', 'Профиль успешно обновлён', 'success');
-            showGlobalNotification('Изменения сохранены');
+            showGlobalNotification('Изменения сохранены', 'success');
         });
     }
     
@@ -145,107 +237,57 @@
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function() {
-            const modalOverlay = document.createElement('div');
-            modalOverlay.className = 'modal-overlay';
-            modalOverlay.innerHTML = `
-                <div class="modal-container">
-                    <div class="modal-header">
-                        <h2 style="color: var(--ACCENT);">ВЫХОД</h2>
-                    </div>
-                    <div class="modal-content">
-                        <p>Вы действительно хотите выйти из аккаунта?</p>
-                        <p class="warning-text">Все несохранённые изменения будут потеряны.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="modal-btn modal-btn-cancel" id="cancelLogout">ОТМЕНА</button>
-                        <button class="modal-btn modal-btn-confirm" id="confirmLogout">ВЫЙТИ</button>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modalOverlay);
-            setTimeout(() => modalOverlay.classList.add('active'), 10);
-            
-            const closeModal = () => {
-                modalOverlay.classList.remove('active');
-                setTimeout(() => modalOverlay.remove(), 300);
-            };
-            
-            const cancelBtn = document.getElementById('cancelLogout');
-            const confirmBtn = document.getElementById('confirmLogout');
-            
-            if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
-            if (confirmBtn) {
-                confirmBtn.addEventListener('click', () => {
-                    showGlobalNotification('Вы вышли из системы. Перенаправление...');
+            createModal({
+                title: 'ВЫХОД',
+                headerColor: 'var(--ACCENT)',
+                content: `
+                    <p>Вы действительно хотите выйти из аккаунта?</p>
+                    <p class="warning-text">Все несохранённые изменения будут потеряны.</p>
+                `,
+                cancelText: 'ОТМЕНА',
+                confirmText: 'ВЫЙТИ',
+                onConfirm: () => {
+                    showGlobalNotification('Вы вышли из системы. Перенаправление...', 'info');
                     setTimeout(() => {
                         window.location.href = 'STARTPAD.html';
                     }, 1000);
-                    closeModal();
-                });
-            }
+                }
+            });
         });
     }
     
     const deleteAccountBtn = document.getElementById('deleteAccountBtn');
     if (deleteAccountBtn) {
         deleteAccountBtn.addEventListener('click', function() {
-            const modalOverlay = document.createElement('div');
-            modalOverlay.className = 'modal-overlay';
-            modalOverlay.innerHTML = `
-                <div class="modal-container">
-                    <div class="modal-header">
-                        <h2 style="color: red;">УДАЛЕНИЕ АККАУНТА</h2>
-                    </div>
-                    <div class="modal-content">
-                        <p><strong>Это действие необратимо.</strong> Все ваши релизы, статистика и данные будут удалены без возможности восстановления.</p>
-                        <p class="warning-text">Введите слово <span style="color: var(--ACCENT);">УДАЛИТЬ</span> для подтверждения:</p>
-                        <input type="text" id="deleteConfirmInput" style="background:transparent; border: var(--BORDER_GRAY); color: white; padding: 8px; width: 100%; margin-top: 10px; font-family: CONSOLAS;">
-                    </div>
-                    <div class="modal-footer">
-                        <button class="modal-btn modal-btn-cancel" id="cancelDelete">ОТМЕНА</button>
-                        <button class="modal-btn modal-btn-confirm" id="confirmDelete" style="background: red;">УДАЛИТЬ НАВСЕГДА</button>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modalOverlay);
-            setTimeout(() => modalOverlay.classList.add('active'), 10);
-            
-            const closeModal = () => {
-                modalOverlay.classList.remove('active');
-                setTimeout(() => modalOverlay.remove(), 300);
-            };
-            
-            const cancelBtn = document.getElementById('cancelDelete');
-            if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
-            
-            const confirmBtn = document.getElementById('confirmDelete');
-            if (confirmBtn) {
-                confirmBtn.addEventListener('click', () => {
+            createModal({
+                title: 'УДАЛЕНИЕ АККАУНТА',
+                headerColor: 'red',
+                content: `
+                    <p><strong>Это действие необратимо.</strong> Все ваши релизы, статистика и данные будут удалены без возможности восстановления.</p>
+                    <p class="warning-text">Введите слово <span style="color: var(--ACCENT);">УДАЛИТЬ</span> для подтверждения:</p>
+                    <input type="text" id="deleteConfirmInput" style="background:transparent; border: var(--BORDER_GRAY); color: white; padding: 8px; width: 100%; margin-top: 10px; font-family: CONSOLAS; box-sizing: border-box;">
+                `,
+                cancelText: 'ОТМЕНА',
+                confirmText: 'УДАЛИТЬ НАВСЕГДА',
+                confirmStyle: 'background: red; border-color: red;',
+                onConfirm: () => {
                     const inputField = document.getElementById('deleteConfirmInput');
                     if (inputField && inputField.value === 'УДАЛИТЬ') {
                         localStorage.removeItem('music_distributor_profile');
+                        localStorage.removeItem('music_releases');
+                        localStorage.removeItem('music_next_id');
+                        localStorage.removeItem('current_release_draft');
                         localStorage.removeItem('userReleases');
-                        showGlobalNotification('Аккаунт удалён. Все данные стёрты.');
+                        
+                        showGlobalNotification('Аккаунт удалён. Все данные стёрты.', 'success');
                         setTimeout(() => {
                             window.location.href = 'STARTPAD.html';
                         }, 1500);
-                        closeModal();
                     } else {
-                        const errDiv = document.createElement('div');
-                        errDiv.style.color = 'red';
-                        errDiv.style.fontFamily = 'CONSOLAS';
-                        errDiv.style.fontSize = '0.8rem';
-                        errDiv.innerText = 'Неверное подтверждающее слово.';
-                        if (!document.querySelector('.modal-content .error-msg')) {
-                            const content = modalOverlay.querySelector('.modal-content');
-                            if (content) {
-                                errDiv.classList.add('error-msg');
-                                content.appendChild(errDiv);
-                            }
-                        }
+                        showGlobalNotification('Неверное подтверждающее слово. Операция отменена.', 'error');
                     }
-                });
-            }
+                }
+            });
         });
     }
     

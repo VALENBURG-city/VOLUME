@@ -1,7 +1,3 @@
-
-
-
-
 (function() {
     
     const STORAGE_KEYS = {
@@ -200,7 +196,6 @@
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const id = parseInt(btn.dataset.id);
-                    
                     softDeleteRelease(id);
                     renderReleases();
                     showNotification('Релиз перемещён в удалённые', 'info');
@@ -318,7 +313,7 @@
 
         
         function addTrack(trackData = null) {
-            const trackId = Date.now() + Math.random();
+            const trackId = Date.now() + '_' + Math.random();
             const trackIndex = tracks.length;
             
             tracks.push({
@@ -333,15 +328,14 @@
             trackDiv.className = 'track-item oneROWform';
             trackDiv.dataset.id = trackId;
             trackDiv.innerHTML = `
-                <input type="text" class="track-name FORMPOLE cut inputREAL" style="width: 50%; height: 47px; cursor: pointer;" placeholder="Название трека" value="${escapeHtml(tracks[trackIndex].name)}">
-                <div class="track-audio-zone" data-track-id="${trackId}">
-                    <div class="audio-upload-btn inputREAL FORMPOLE " style="width: 100%; height: 47px; cursor: pointer; color: var(--GRAY)" >
+                <input type="text" class="track-name FORMPOLE cut inputREAL" style="width: 50%; height: 47px;" placeholder="Название трека" value="${escapeHtml(tracks[trackIndex].name)}">
+                <div class="track-audio-zone" data-track-id="${trackId}" style="width: 25%;">
+                    <div class="audio-upload-btn inputREAL FORMPOLE" style="width: 100%; height: 47px; cursor: pointer; color: var(--GRAY); display: flex; align-items: center; justify-content: center;">
                         ${tracks[trackIndex].audioFile ? 'ЗАГРУЖЕНО' : 'ЗАГРУЗИТЬ ТРЕК'}
                     </div>
                     <input type="file" class="audio-input" accept="audio/*" style="display: none;">
-                    ${tracks[trackIndex].audioName ? `<span class="audio-filename">${escapeHtml(tracks[trackIndex].audioName)}</span>` : ''}
                 </div>
-                <button type="button" style="width: 50px; height: 47px; font-size: 0.8rem; border-color: red; background-color: transparent; color: red; flex-shrink: 0;" class="track-delete-btn ">✕</button>
+                <button type="button" style="width: 50px; height: 47px; font-size: 0.8rem; border-color: red; background-color: transparent; color: red; flex-shrink: 0; cursor: pointer;" class="track-delete-btn">✕</button>
             `;
 
             
@@ -366,8 +360,8 @@
                 if (file && file.type.startsWith('audio/')) {
                     tracks[trackIndex].audioFile = await fileToBase64(file);
                     tracks[trackIndex].audioName = file.name;
-                    audioBtn.textContent = 'АУДИО ЗАГРУЖЕНО';
-
+                    audioBtn.textContent = 'ЗАГРУЖЕНО';
+                    showNotification(`Аудио "${file.name}" загружено`, 'success');
                 } else {
                     showNotification('Пожалуйста, загрузите аудиофайл', 'error');
                 }
@@ -385,11 +379,8 @@
                 elements.tracklistContainer.appendChild(trackDiv);
             }
             
-            updateTrackNumbers();
             updatePreview();
         }
-
-
 
         function renderAllTracks() {
             if (!elements.tracklistContainer) return;
@@ -441,8 +432,6 @@
                 showFormMessage('Добавьте хотя бы один трек с названием', 'error');
                 return;
             }
-            
-            
             
             const releaseData = {
                 id: editReleaseData ? editReleaseData.id : generateId(),
@@ -532,7 +521,7 @@
                 tracks = [];
                 editReleaseData.tracks.forEach(track => {
                     tracks.push({
-                        id: Date.now() + Math.random(),
+                        id: Date.now() + '_' + Math.random(),
                         name: track.name || '',
                         feat: track.feat || '',
                         audioFile: track.audioFile || '',
